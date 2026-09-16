@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,7 +54,7 @@
       </p>
 
       <p class="authors">
-      K. Myhre · S. Blom · L. Bekkely
+        K. Myhre · S. Blom · L. Bekkely
       </p>
 
     </div>
@@ -68,14 +67,14 @@
 
 
     <!-- =========================
-         01 INTRODUCTION
+         STOCHASTIC MOTION
     ========================== -->
 
-    <section class="section" id="introduction">
+    <section class="section" id="stochastic-motion">
 
       <div class="section-heading">
         <span>01</span>
-        <h2>Introduction</h2>
+        <h2>Stochastic Motion</h2>
       </div>
 
       <div class="section-content">
@@ -109,24 +108,6 @@
 
         </div>
 
-      </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         02 DIFFUSION
-    ========================== -->
-
-    <section class="section section-alt" id="diffusion">
-
-      <div class="section-heading">
-        <span>02</span>
-        <h2>Diffusion and stochastic motion</h2>
-      </div>
-
-      <div class="section-content">
 
         <p>
           We begin by considering the diffusion equation. For an initial
@@ -177,6 +158,68 @@
           motion as a stochastic diffusion process.
         </p>
 
+
+        <p>
+          The stochastic dynamics are implemented as a discrete random walk.
+          At each time step, a particle can move left, remain at its current
+          position, or move right.
+        </p>
+
+        <p>
+          The transition probabilities depend on the potential energy at
+          neighbouring positions.
+        </p>
+
+        <div class="equation">
+          $$
+          p^+
+          =
+          \frac{e^{-\beta V(x+1)}}
+          {e^{-\beta V(x-1)}
+          +e^{-\beta V(x)}
+          +e^{-\beta V(x+1)}}
+          $$
+        </div>
+
+        <div class="equation">
+          $$
+          p^-
+          =
+          \frac{e^{-\beta V(x-1)}}
+          {e^{-\beta V(x-1)}
+          +e^{-\beta V(x)}
+          +e^{-\beta V(x+1)}}
+          $$
+        </div>
+
+        <div class="equation compact-equation">
+          $$
+          p^0 = 1-p^+-p^-.
+          $$
+        </div>
+
+        <p>
+          For a constant potential, the three probabilities are equal.
+          The resulting motion therefore corresponds to an unbiased
+          random walk.
+        </p>
+
+        <figure class="figure">
+
+          <div class="image-placeholder">
+            <strong>FIGURE 1</strong>
+            <span>
+              Random-walk trajectories or particle distributions
+            </span>
+          </div>
+
+          <figcaption>
+            <strong>Figure 1.</strong>
+            Example of stochastic particle motion.
+          </figcaption>
+
+        </figure>
+
       </div>
 
     </section>
@@ -184,14 +227,14 @@
 
 
     <!-- =========================
-         03 BOLTZMANN
+         POTENTIAL LANDSCAPES
     ========================== -->
 
-    <section class="section" id="boltzmann">
+    <section class="section section-alt" id="potential-landscapes">
 
       <div class="section-heading">
-        <span>03</span>
-        <h2>Particles in potential landscapes</h2>
+        <span>02</span>
+        <h2>Potential Landscapes</h2>
       </div>
 
       <div class="section-content">
@@ -233,7 +276,6 @@
 
           </article>
 
-
           <article class="info-card">
 
             <h3>Low temperature</h3>
@@ -248,135 +290,12 @@
         </div>
 
 
-        <figure class="figure">
-
-          <div class="image-placeholder">
-            <strong>FIGURE 1</strong>
-            <span>
-              Potential landscape
-            </span>
-          </div>
-
-          <figcaption>
-            <strong>Figure 1.</strong>
-            Example of a potential landscape used to describe particle
-            motion.
-          </figcaption>
-
-        </figure>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         04 RANDOM WALK
-    ========================== -->
-
-    <section class="section section-alt" id="random-walk">
-
-      <div class="section-heading">
-        <span>04</span>
-        <h2>Random walks</h2>
-      </div>
-
-      <div class="section-content">
-
-        <p>
-          The stochastic dynamics are implemented as a discrete random walk.
-          At each time step, a particle can move left, remain at its current
-          position, or move right.
-        </p>
-
-        <p>
-          The transition probabilities depend on the potential energy at
-          neighbouring positions.
-        </p>
-
-
-        <div class="equation">
-          $$
-          p^+
-          =
-          \frac{e^{-\beta V(x+1)}}
-          {e^{-\beta V(x-1)}
-          +e^{-\beta V(x)}
-          +e^{-\beta V(x+1)}}
-          $$
-        </div>
-
-
-        <div class="equation">
-          $$
-          p^-
-          =
-          \frac{e^{-\beta V(x-1)}}
-          {e^{-\beta V(x-1)}
-          +e^{-\beta V(x)}
-          +e^{-\beta V(x+1)}}
-          $$
-        </div>
-
-
-        <div class="equation compact-equation">
-          $$
-          p^0 = 1-p^+-p^-.
-          $$
-        </div>
-
-
-        <p>
-          For a constant potential, the three probabilities are equal.
-          The resulting motion therefore corresponds to an unbiased
-          random walk.
-        </p>
-
-
-        <figure class="figure">
-
-          <div class="image-placeholder">
-            <strong>FIGURE 2</strong>
-            <span>
-              Random-walk trajectories or particle distributions
-            </span>
-          </div>
-
-          <figcaption>
-            <strong>Figure 2.</strong>
-            Example of stochastic particle motion.
-          </figcaption>
-
-        </figure>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         05 POTENTIALS
-    ========================== -->
-
-    <section class="section" id="potentials">
-
-      <div class="section-heading">
-        <span>05</span>
-        <h2>Potential landscapes</h2>
-      </div>
-
-      <div class="section-content">
-
         <p>
           Several different landscapes were considered to investigate how
           the potential influences particle motion.
         </p>
 
-
         <div class="potential-grid">
-
 
           <article class="potential-card">
 
@@ -450,50 +369,30 @@
 
           </article>
 
-
         </div>
 
 
         <figure class="figure">
 
           <div class="image-placeholder">
-            <strong>FIGURE 3</strong>
+            <strong>FIGURE 2</strong>
             <span>
               Different potential landscapes
             </span>
           </div>
 
           <figcaption>
-            <strong>Figure 3.</strong>
+            <strong>Figure 2.</strong>
             Potential landscapes investigated in the numerical simulations.
           </figcaption>
 
         </figure>
 
-      </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         06 TEMPERATURE
-    ========================== -->
-
-    <section class="section section-alt" id="temperature">
-
-      <div class="section-heading">
-        <span>06</span>
-        <h2>The role of temperature</h2>
-      </div>
-
-      <div class="section-content">
 
         <p>
           The parameter $\beta=1/(k_B T)$ controls the influence of the
           potential relative to thermal fluctuations.
         </p>
-
 
         <div class="temperature-scale">
 
@@ -513,18 +412,17 @@
 
         </div>
 
-
         <figure class="figure">
 
           <div class="image-placeholder">
-            <strong>FIGURE 4</strong>
+            <strong>FIGURE 3</strong>
             <span>
               Particle distributions for different values of $\beta$
             </span>
           </div>
 
           <figcaption>
-            <strong>Figure 4.</strong>
+            <strong>Figure 3.</strong>
             Particle distributions for different inverse temperatures.
           </figcaption>
 
@@ -537,14 +435,14 @@
 
 
     <!-- =========================
-         07 FLASHING RATCHET
+         DIRECTED TRANSPORT
     ========================== -->
 
-    <section class="section" id="ratchet">
+    <section class="section" id="directed-transport">
 
       <div class="section-heading">
-        <span>07</span>
-        <h2>From random walks to directed transport</h2>
+        <span>03</span>
+        <h2>Directed Transport</h2>
       </div>
 
       <div class="section-content">
@@ -570,7 +468,6 @@
 
         <div class="ratchet-process">
 
-
           <article class="process-step">
 
             <span>1</span>
@@ -583,9 +480,7 @@
 
           </article>
 
-
           <span class="process-arrow">→</span>
-
 
           <article class="process-step">
 
@@ -599,9 +494,7 @@
 
           </article>
 
-
           <span class="process-arrow">→</span>
-
 
           <article class="process-step">
 
@@ -615,9 +508,7 @@
 
           </article>
 
-
           <span class="process-arrow">→</span>
-
 
           <article class="process-step">
 
@@ -631,52 +522,32 @@
 
           </article>
 
-
         </div>
 
 
         <figure class="figure">
 
           <div class="image-placeholder">
-            <strong>FIGURE 5</strong>
+            <strong>FIGURE 4</strong>
             <span>
               Flashing-ratchet potential or particle trajectory
             </span>
           </div>
 
           <figcaption>
-            <strong>Figure 5.</strong>
+            <strong>Figure 4.</strong>
             Schematic or numerical illustration of the flashing-ratchet
             mechanism.
           </figcaption>
 
         </figure>
 
-      </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         08 ASYMMETRY
-    ========================== -->
-
-    <section class="section section-alt" id="asymmetry">
-
-      <div class="section-heading">
-        <span>08</span>
-        <h2>Asymmetric potentials and current</h2>
-      </div>
-
-      <div class="section-content">
 
         <p>
           The direction of transport depends strongly on the asymmetry
           of the potential. The average particle current is measured using
           the difference between rightward and leftward transitions:
         </p>
-
 
         <div class="equation">
           $$
@@ -688,7 +559,6 @@
 
 
         <div class="result-grid">
-
 
           <article class="result-card">
 
@@ -702,7 +572,6 @@
 
           </article>
 
-
           <article class="result-card">
 
             <strong>
@@ -714,7 +583,6 @@
             </p>
 
           </article>
-
 
           <article class="result-card">
 
@@ -728,45 +596,26 @@
 
           </article>
 
-
         </div>
 
 
         <figure class="figure">
 
           <div class="image-placeholder">
-            <strong>FIGURE 6</strong>
+            <strong>FIGURE 5</strong>
             <span>
               Average current $J$ as a function of $\alpha$
             </span>
           </div>
 
           <figcaption>
-            <strong>Figure 6.</strong>
+            <strong>Figure 5.</strong>
             Average particle current as a function of the asymmetry
             parameter $\alpha$.
           </figcaption>
 
         </figure>
 
-      </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         09 FLASHING INTERVAL
-    ========================== -->
-
-    <section class="section" id="flashing">
-
-      <div class="section-heading">
-        <span>09</span>
-        <h2>Effect of the flashing interval</h2>
-      </div>
-
-      <div class="section-content">
 
         <p>
           The duration of each flashing phase also influences the
@@ -805,7 +654,6 @@
 
         </div>
 
-
         <p>
           This analytical expression provides a theoretical prediction
           for the average current and can be compared with the numerical
@@ -816,14 +664,14 @@
         <figure class="figure">
 
           <div class="image-placeholder">
-            <strong>FIGURE 7</strong>
+            <strong>FIGURE 6</strong>
             <span>
               Current as a function of flashing interval $T_p$
             </span>
           </div>
 
           <figcaption>
-            <strong>Figure 7.</strong>
+            <strong>Figure 6.</strong>
             Dependence of the average current on the flashing interval.
           </figcaption>
 
@@ -836,14 +684,14 @@
 
 
     <!-- =========================
-         10 NUMERICAL VS ANALYTICAL
+         NUMERICAL RESULTS
     ========================== -->
 
-    <section class="section section-alt" id="comparison">
+    <section class="section section-alt" id="results">
 
       <div class="section-heading">
-        <span>10</span>
-        <h2>Numerical and analytical comparison</h2>
+        <span>04</span>
+        <h2>Numerical Results</h2>
       </div>
 
       <div class="section-content">
@@ -865,38 +713,20 @@
         <figure class="figure">
 
           <div class="image-placeholder">
-            <strong>FIGURE 8</strong>
+            <strong>FIGURE 7</strong>
             <span>
               Numerical versus analytical comparison
             </span>
           </div>
 
           <figcaption>
-            <strong>Figure 8.</strong>
+            <strong>Figure 7.</strong>
             Comparison between numerical simulations and the analytical
             prediction for the average current.
           </figcaption>
 
         </figure>
 
-      </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         11 TEMPERATURE COMPARISON
-    ========================== -->
-
-    <section class="section" id="temperature-comparison">
-
-      <div class="section-heading">
-        <span>11</span>
-        <h2>Temperature dependence</h2>
-      </div>
-
-      <div class="section-content">
 
         <p>
           Increasing $\beta$ strengthens the influence of the potential
@@ -914,14 +744,14 @@
         <figure class="figure">
 
           <div class="image-placeholder">
-            <strong>FIGURE 9</strong>
+            <strong>FIGURE 8</strong>
             <span>
               Effect of $\beta$ on numerical and analytical current
             </span>
           </div>
 
           <figcaption>
-            <strong>Figure 9.</strong>
+            <strong>Figure 8.</strong>
             Influence of the inverse temperature parameter $\beta$ on
             numerical and analytical current.
           </figcaption>
@@ -935,14 +765,14 @@
 
 
     <!-- =========================
-         12 LIMITATIONS
+         INTERPRETATION
     ========================== -->
 
-    <section class="section section-alt" id="limitations">
+    <section class="section" id="interpretation">
 
       <div class="section-heading">
-        <span>12</span>
-        <h2>Limitations and interpretation</h2>
+        <span>05</span>
+        <h2>Interpretation</h2>
       </div>
 
       <div class="section-content">
@@ -977,24 +807,6 @@
 
         </div>
 
-      </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         13 CONCLUSION
-    ========================== -->
-
-    <section class="section" id="conclusion">
-
-      <div class="section-heading">
-        <span>13</span>
-        <h2>Conclusion</h2>
-      </div>
-
-      <div class="section-content">
 
         <p>
           This project investigated stochastic particle motion in different
@@ -1019,73 +831,6 @@
     </section>
 
 
-
-    <!-- =========================
-         14 PROJECT INFORMATION
-    ========================== -->
-
-    <section class="section project-info" id="project-info">
-
-      <div class="section-heading">
-        <span>14</span>
-        <h2>Project information</h2>
-      </div>
-
-
-      <div class="info-grid">
-
-
-        <div>
-
-          <h3>Project type</h3>
-
-          <p>
-            Group project
-          </p>
-
-        </div>
-
-
-        <div>
-
-          <h3>Methods</h3>
-
-          <p>
-            Stochastic simulation · Numerical modelling · Analytical analysis
-          </p>
-
-        </div>
-
-
-        <div>
-
-          <h3>Tools</h3>
-
-          <p>
-            MATLAB · Numerical methods · Data analysis
-          </p>
-
-        </div>
-
-
-      </div>
-
-
-      <p class="group-note">
-        This project was completed as part of a group. The full source code
-        and project report are available in the group's GitHub repository.
-      </p>
-
-
-      <a
-        href="#"
-        class="button">
-        GitHub repository →
-      </a>
-
-    </section>
-
-
   </main>
 
 
@@ -1105,4 +850,3 @@
 
 </body>
 </html>
-```
