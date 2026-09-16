@@ -67,15 +67,10 @@
 
 
     <!-- =========================
-         STOCHASTIC MOTION
+         INTRODUCTION
     ========================== -->
 
-    <section class="section" id="stochastic-motion">
-
-      <div class="section-heading">
-        <span>01</span>
-        <h2>Stochastic Motion</h2>
-      </div>
+    <section class="section" id="introduction">
 
       <div class="section-content">
 
@@ -83,15 +78,12 @@
           Motor proteins play an important role in transporting molecular
           cargo within cells. Their ability to produce directed motion from
           thermal fluctuations makes them an interesting example of
-          stochastic processes in biological systems.
-        </p>
-
-        <p>
-          In this project, we investigate how directed motion can emerge
-          from random walks in asymmetric potential landscapes. By modelling
-          the movement of particles under different potentials and
-          temperatures, we study how thermal fluctuations and potential
-          asymmetry influence particle dynamics.
+          stochastic processes in biological systems. In this project, we
+          investigate how directed motion can emerge from random walks in
+          asymmetric potential landscapes. By modelling the movement of
+          particles under different potentials and temperatures, we study
+          how thermal fluctuations and potential asymmetry influence
+          particle dynamics.
         </p>
 
         <div class="highlight-box">
@@ -108,6 +100,24 @@
 
         </div>
 
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         DIFFUSION AND RANDOM WALKS
+    ========================== -->
+
+    <section class="section" id="diffusion-random-walks">
+
+      <div class="section-heading">
+        <span>01</span>
+        <h2>Diffusion and Random Walks</h2>
+      </div>
+
+      <div class="section-content">
 
         <p>
           We begin by considering the diffusion equation. For an initial
@@ -155,19 +165,11 @@
 
         <p>
           This provides the theoretical foundation for describing particle
-          motion as a stochastic diffusion process.
-        </p>
-
-
-        <p>
-          The stochastic dynamics are implemented as a discrete random walk.
-          At each time step, a particle can move left, remain at its current
-          position, or move right.
-        </p>
-
-        <p>
-          The transition probabilities depend on the potential energy at
-          neighbouring positions.
+          motion as a stochastic diffusion process. The stochastic dynamics
+          are implemented as a discrete random walk. At each time step, a
+          particle can move left, remain at its current position, or move
+          right, with transition probabilities determined by the potential
+          energy at neighbouring positions.
         </p>
 
         <div class="equation">
@@ -199,10 +201,13 @@
         </div>
 
         <p>
-          For a constant potential, the three probabilities are equal.
-          The resulting motion therefore corresponds to an unbiased
-          random walk.
+          For a constant potential, the three probabilities are equal and
+          the resulting motion corresponds to an unbiased random walk.
+          Introducing a non-uniform potential changes these transition
+          probabilities and allows the stochastic dynamics to be influenced
+          by the energy landscape.
         </p>
+
 
         <figure class="figure">
 
@@ -260,7 +265,10 @@
         <p>
           Here, $k_B$ is Boltzmann's constant and $T$ is the temperature.
           The parameter $\beta$ describes the relative importance of the
-          potential energy compared with thermal fluctuations.
+          potential energy compared with thermal fluctuations. At high
+          temperature, thermal fluctuations dominate the dynamics, while at
+          low temperature the potential has a stronger influence on particle
+          motion.
         </p>
 
         <div class="two-column">
@@ -292,8 +300,13 @@
 
         <p>
           Several different landscapes were considered to investigate how
-          the potential influences particle motion.
+          the potential influences particle motion. A constant potential
+          produces approximately unbiased diffusion, while a linear
+          potential introduces a preferred direction. Periodic potentials
+          create repeating wells and barriers, and a quartic potential
+          strongly confines particles around the centre.
         </p>
+
 
         <div class="potential-grid">
 
@@ -390,8 +403,8 @@
 
 
         <p>
-          The parameter $\beta=1/(k_B T)$ controls the influence of the
-          potential relative to thermal fluctuations.
+          The parameter $\beta=1/(k_B T)$ therefore controls the balance
+          between thermal fluctuations and the potential landscape.
         </p>
 
         <div class="temperature-scale">
@@ -411,6 +424,7 @@
           </div>
 
         </div>
+
 
         <figure class="figure">
 
@@ -450,19 +464,17 @@
         <p>
           A central part of the project is the flashing ratchet model.
           The system alternates between a flat potential, where particles
-          can diffuse freely, and an asymmetric periodic potential.
-        </p>
-
-        <p>
-          During the flat-potential phase, thermal fluctuations allow
-          particles to spread out. When the asymmetric potential is
-          switched on, particles tend to move towards nearby potential
-          minima.
+          can diffuse freely, and an asymmetric periodic potential. During
+          the flat-potential phase, thermal fluctuations allow particles to
+          spread out. When the asymmetric potential is switched on,
+          particles tend to move towards nearby potential minima.
         </p>
 
         <p>
           Repeating this process can result in a net displacement even
-          though the underlying particle motion is stochastic.
+          though the underlying particle motion is stochastic. The mechanism
+          therefore combines thermal fluctuations with spatial asymmetry and
+          time-dependent switching.
         </p>
 
 
@@ -618,16 +630,12 @@
 
 
         <p>
-          The duration of each flashing phase also influences the
-          resulting current. If the potential is switched too quickly,
-          particles do not have enough time to respond to the potential
-          landscape.
-        </p>
-
-        <p>
-          For intermediate flashing intervals, a stronger directed
-          current can emerge. If the flashing interval becomes very
-          large, the current can decrease again.
+          The duration of each flashing phase also influences the resulting
+          current. If the potential is switched too quickly, particles do
+          not have enough time to respond to the potential landscape.
+          For intermediate flashing intervals, a stronger directed current
+          can emerge, while very large flashing intervals can reduce the
+          current again.
         </p>
 
 
@@ -700,13 +708,9 @@
           The numerical simulations were compared with the analytical
           expression for the average current. For a range of asymmetry
           parameters, the numerical and analytical results show good
-          agreement.
-        </p>
-
-        <p>
-          Small deviations can occur because the numerical model uses a
-          discrete lattice and a finite number of particles. Stochastic
-          fluctuations also introduce variation between simulations.
+          agreement. Small deviations can occur because the numerical model
+          uses a discrete lattice and a finite number of particles, while
+          stochastic fluctuations introduce variation between simulations.
         </p>
 
 
@@ -730,14 +734,11 @@
 
         <p>
           Increasing $\beta$ strengthens the influence of the potential
-          relative to thermal fluctuations.
-        </p>
-
-        <p>
-          At very small $\beta$, the potential is weak compared with
-          thermal fluctuations and the numerical current approaches zero.
-          For larger $\beta$, the numerical results become increasingly
-          similar to the analytical prediction.
+          relative to thermal fluctuations. At very small $\beta$, the
+          potential is weak compared with thermal fluctuations and the
+          numerical current approaches zero. For larger $\beta$, the
+          numerical results become increasingly similar to the analytical
+          prediction.
         </p>
 
 
@@ -758,39 +759,6 @@
 
         </figure>
 
-      </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         INTERPRETATION
-    ========================== -->
-
-    <section class="section" id="interpretation">
-
-      <div class="section-heading">
-        <span>05</span>
-        <h2>Interpretation</h2>
-      </div>
-
-      <div class="section-content">
-
-        <p>
-          The analytical solution provides a useful description of average
-          transport behaviour, but it does not necessarily reproduce every
-          feature of the numerical model.
-        </p>
-
-        <p>
-          Several effects can contribute to deviations between the two
-          approaches. The numerical model uses a discrete spatial lattice
-          and a finite number of particles, while the analytical treatment
-          relies on approximations associated with the underlying diffusion
-          process.
-        </p>
-
 
         <div class="highlight-box">
 
@@ -809,21 +777,25 @@
 
 
         <p>
-          This project investigated stochastic particle motion in different
-          potential landscapes, with particular focus on the flashing
-          ratchet mechanism for directed transport.
+          The model is deliberately simplified and does not reproduce the
+          full molecular complexity of biological motor proteins. Real
+          molecular motors involve chemical reactions, conformational
+          changes, multiple interacting states, and complex cellular
+          environments. Nevertheless, the model demonstrates how directed
+          motion can emerge from stochastic dynamics when spatial asymmetry
+          and time-dependent driving break the symmetry of otherwise random
+          motion.
         </p>
 
-        <p>
-          The simulations demonstrated how temperature, potential shape,
-          asymmetry, and flashing time influence particle distributions
-          and net current.
-        </p>
 
         <p>
-          Comparing the numerical simulations with an analytical expression
-          showed agreement under suitable conditions, while also
-          illustrating the limitations of analytical approximations.
+          Overall, the simulations illustrate how temperature, potential
+          shape, asymmetry, and flashing time influence both particle
+          distributions and net current. The comparison between numerical
+          and analytical results also shows how simplified theoretical
+          models can describe the average behaviour of a stochastic system
+          while still having limitations at the level of individual
+          trajectories.
         </p>
 
       </div>
