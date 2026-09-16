@@ -787,44 +787,5 @@
 </html>
 ```
 
-### Én ting til: CSS-en
 
-Siden du allerede har `.potential-grid`, `.potential-card`, `.ratchet-process` og `.process-step` i CSS-en din, **kan det hende at de allerede blir bokser** slik du ønsker.
-
-Men hvis `Diffuse → Switch on → Relax → Repeat` fortsatt blir vist som en horisontal rekke uten tydelige bokser, ville jeg endret CSS-en slik:
-
-```css
-.ratchet-process {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin: 3rem 0;
-}
-
-.process-step {
-  padding: 1.8rem;
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  background: var(--card-background);
-}
-
-.process-step > span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  border: 1px solid var(--border-color);
-  margin-bottom: 1rem;
-}
-
-.process-step h3 {
-  margin-bottom: 0.6rem;
-}
-
-.process-step p {
-  margin: 0;
-}
-```
 
