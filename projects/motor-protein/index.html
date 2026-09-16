@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Thermally Activated Particle Motion | Kaia Myhre</title>
+  <title>Modelling Motor Protein Motion | Kaia Myhre</title>
 
   <link rel="stylesheet" href="style.css">
 
@@ -44,11 +44,11 @@
   </p>
 
   <p class="eyebrow">
-    Computational Physics · Statistical Physics
+    Computational Physics · Biophysics
   </p>
 
   <h1>
-    Thermally Activated Particle Motion
+    Modelling Motor Protein Motion
   </h1>
 
   <p class="subtitle">
@@ -76,18 +76,25 @@
   <div class="section-content">
 
     <p>
-      Thermal fluctuations cause microscopic particles to move randomly,
-      but this random motion can be influenced by the surrounding energy
-      landscape. In this project, we investigate how temperature and
-      potential energy affect stochastic particle motion.
+      Motor proteins play an important role in transporting molecular
+      cargo within cells. Their ability to produce directed motion from
+      thermal fluctuations makes them an interesting example of
+      stochastic processes in biological systems.
     </p>
 
     <p>
-      We begin with the diffusion equation and a discrete random-walk
-      model. We then introduce Boltzmann-weighted transition
-      probabilities and study several potential landscapes. Finally,
-      we use an asymmetric, periodically switched potential to investigate
-      how random motion can produce directed transport.
+      In this project, we investigate how directed motion can emerge
+      from stochastic dynamics using a simplified mathematical model.
+      Particles are represented as random walkers on a one-dimensional
+      lattice, where their movement is influenced by the surrounding
+      potential landscape and temperature.
+    </p>
+
+    <p>
+      By studying different potentials and a time-dependent asymmetric
+      potential, we investigate how thermal fluctuations, spatial
+      asymmetry and switching time influence particle motion and produce
+      a net current.
     </p>
 
     <div class="highlight-box">
@@ -97,8 +104,9 @@
       </span>
 
       <p>
-        How can random thermal motion produce
-        <strong>directed transport</strong> in an asymmetric potential?
+        How can stochastic thermal motion produce
+        <strong>directed transport</strong> when interacting with an
+        asymmetric potential landscape?
       </p>
 
     </div>
@@ -110,24 +118,21 @@
 
 
 <!-- =========================
-     DIFFUSION AND RANDOM WALK
+     STOCHASTIC MOTION
 ========================== -->
 
 <section class="section section-alt" id="stochastic-motion">
 
   <div class="section-heading">
-
     <span>01</span>
-
-    <h2>Diffusion and Thermally Activated Motion</h2>
-
+    <h2>Stochastic Motion and Potential Landscapes</h2>
   </div>
-
 
   <div class="section-content">
 
     <p>
-      We first consider the one-dimensional diffusion equation
+      We begin with the diffusion equation, which describes how a
+      probability distribution evolves through time:
     </p>
 
     <div class="equation">
@@ -135,14 +140,15 @@
       $$
       \frac{\partial \phi}{\partial t}
       =
-      D\frac{\partial^2\phi}{\partial x^2}.
+      D
+      \frac{\partial^2 \phi}{\partial x^2}.
       $$
 
     </div>
 
     <p>
-      For an initial distribution $h(x)$, a solution is given by the
-      Gaussian heat kernel
+      For an initial distribution $h(x)$, the solution can be written
+      using the Gaussian heat kernel:
     </p>
 
     <div class="equation">
@@ -153,23 +159,28 @@
       \frac{1}{\sqrt{4\pi Dt}}
       \int_{-\infty}^{\infty}
       h(y)
-      e^{-(x-y)^2/(4Dt)}
+      \exp\left(
+      -\frac{(x-y)^2}{4Dt}
+      \right)
       \,dy.
       $$
 
     </div>
 
     <p>
-      As $t\rightarrow0$, the Gaussian kernel approaches
-      $\delta(x-y)$, giving $\phi(x,0)=h(x)$. This verifies that the
-      solution satisfies the required initial condition.
+      As $t \rightarrow 0$, the Gaussian kernel approaches a Dirac
+      delta distribution, giving $\phi(x,t)\rightarrow h(x)$. This
+      provides the theoretical foundation for describing particle
+      motion as a stochastic diffusion process.
     </p>
 
     <p>
-      We then describe particle motion as a discrete random walk. A
-      particle can move one step left, remain at its current position,
-      or move one step right. The probabilities are determined by the
-      Boltzmann weights of the three possible states.
+      In the numerical model, particles perform a discrete random walk
+      on a one-dimensional lattice. At each time step, a particle can
+      move one step to the left, remain at its current position, or
+      move one step to the right. The transition probabilities are
+      determined by the potential energy of the three possible
+      positions.
     </p>
 
     <div class="equation">
@@ -180,8 +191,10 @@
       \frac{e^{-\beta V(x+1)}}
       {
       e^{-\beta V(x-1)}
-      +e^{-\beta V(x)}
-      +e^{-\beta V(x+1)}
+      +
+      e^{-\beta V(x)}
+      +
+      e^{-\beta V(x+1)}
       }
       $$
 
@@ -195,8 +208,10 @@
       \frac{e^{-\beta V(x-1)}}
       {
       e^{-\beta V(x-1)}
-      +e^{-\beta V(x)}
-      +e^{-\beta V(x+1)}
+      +
+      e^{-\beta V(x)}
+      +
+      e^{-\beta V(x+1)}
       }
       $$
 
@@ -205,53 +220,24 @@
     <div class="equation compact-equation">
 
       $$
-      p^0=1-p^+-p^-.
+      p^0 = 1-p^+-p^-.
       $$
 
     </div>
 
     <p>
-      The inverse temperature
-      $\beta=1/(k_BT)$ controls how strongly the potential affects
-      the motion. At high temperature, the three states become more
-      equally probable. At low temperature, particles preferentially
-      move towards lower-energy states.
+      The parameter
+      $$
+      \beta=\frac{1}{k_BT}
+      $$
+      determines the relative importance of the potential compared
+      with thermal fluctuations. Small $\beta$ corresponds to stronger
+      thermal fluctuations, while large $\beta$ gives the potential a
+      stronger influence on the particle dynamics.
     </p>
 
 
-    <div class="two-column">
-
-      <article class="info-card">
-
-        <h3>High temperature</h3>
-
-        <p>
-          Thermal fluctuations dominate and the motion approaches an
-          unbiased random walk.
-        </p>
-
-      </article>
-
-
-      <article class="info-card">
-
-        <h3>Low temperature</h3>
-
-        <p>
-          Potential-energy differences strongly influence the particle
-          motion.
-        </p>
-
-      </article>
-
-    </div>
-
-
-    <p>
-      We investigate four different potentials to see how the energy
-      landscape changes the resulting particle distributions.
-    </p>
-
+    <!-- POTENTIAL BOXES -->
 
     <div class="potential-grid">
 
@@ -260,18 +246,18 @@
 
         <span class="card-number">01</span>
 
-        <h3>Constant</h3>
+        <h3>Constant potential</h3>
 
         <div class="mini-equation">
 
           $$
-          V_1(x)=k
+          V(x)=k
           $$
 
         </div>
 
         <p>
-          Gives approximately unbiased diffusion.
+          Produces approximately unbiased diffusion.
         </p>
 
       </article>
@@ -281,18 +267,18 @@
 
         <span class="card-number">02</span>
 
-        <h3>Linear</h3>
+        <h3>Linear potential</h3>
 
         <div class="mini-equation">
 
           $$
-          V_2(x)=-kx
+          V(x)=-kx
           $$
 
         </div>
 
         <p>
-          Favors motion towards lower potential.
+          Creates a preferred direction of motion.
         </p>
 
       </article>
@@ -302,21 +288,10 @@
 
         <span class="card-number">03</span>
 
-        <h3>Periodic</h3>
-
-        <div class="mini-equation">
-
-          $$
-          V_3(x)=k
-          \left(
-          \frac{x}{15}-\cos\frac{x}{3}
-          \right)
-          $$
-
-        </div>
+        <h3>Asymmetric periodic potential</h3>
 
         <p>
-          Creates repeating minima and barriers.
+          Creates repeating wells and barriers with spatial asymmetry.
         </p>
 
       </article>
@@ -326,18 +301,18 @@
 
         <span class="card-number">04</span>
 
-        <h3>Quartic</h3>
+        <h3>Quartic potential</h3>
 
         <div class="mini-equation">
 
           $$
-          V_4(x)=kx^4
+          V(x)=kx^4
           $$
 
         </div>
 
         <p>
-          Confines particles near $x=0$.
+          Strongly confines particles around the centre.
         </p>
 
       </article>
@@ -353,7 +328,7 @@
         <strong>FIGURE 1</strong>
 
         <span>
-          Particle distributions for different potential landscapes
+          Different potential landscapes
         </span>
 
       </div>
@@ -361,8 +336,7 @@
       <figcaption>
 
         <strong>Figure 1.</strong>
-        The different potential landscapes and resulting particle
-        distributions investigated in the simulations.
+        Potential landscapes investigated in the numerical simulations.
 
       </figcaption>
 
@@ -381,29 +355,28 @@
 <section class="section" id="flashing-ratchet">
 
   <div class="section-heading">
-
     <span>02</span>
-
     <h2>The Flashing Ratchet</h2>
-
   </div>
-
 
   <div class="section-content">
 
     <p>
-      We now introduce a periodically switched asymmetric potential.
-      The system alternates between a constant potential and an
-      asymmetric sawtooth potential.
+      The main part of the project is the flashing ratchet model. The
+      system alternates between a flat potential and an asymmetric
+      periodic potential.
     </p>
 
     <p>
-      During the constant-potential phase, particles diffuse through
-      thermal fluctuations. When the asymmetric potential is switched
+      When the potential is switched off, particles diffuse freely due
+      to thermal fluctuations. When the asymmetric potential is switched
       on, particles tend to move towards nearby potential minima.
-      Repeating this cycle can produce a net displacement.
+      Repeating this process can produce a net displacement even though
+      the individual particle motion remains stochastic.
     </p>
 
+
+    <!-- RATCHET PROCESS BOXES -->
 
     <div class="ratchet-process">
 
@@ -415,33 +388,23 @@
         <h3>Diffuse</h3>
 
         <p>
-          Particles move through thermal fluctuations.
+          Particles spread through thermal fluctuations.
         </p>
 
       </article>
-
-
-      <span class="process-arrow">
-        →
-      </span>
 
 
       <article class="process-step">
 
         <span>2</span>
 
-        <h3>Switch</h3>
+        <h3>Switch on</h3>
 
         <p>
-          The asymmetric potential is activated.
+          The asymmetric potential is introduced.
         </p>
 
       </article>
-
-
-      <span class="process-arrow">
-        →
-      </span>
 
 
       <article class="process-step">
@@ -451,15 +414,10 @@
         <h3>Relax</h3>
 
         <p>
-          Particles move towards potential minima.
+          Particles move towards nearby potential minima.
         </p>
 
       </article>
-
-
-      <span class="process-arrow">
-        →
-      </span>
 
 
       <article class="process-step">
@@ -469,7 +427,7 @@
         <h3>Repeat</h3>
 
         <p>
-          The cycle produces directed transport.
+          Repeated cycles can produce a net current.
         </p>
 
       </article>
@@ -485,7 +443,7 @@
         <strong>FIGURE 2</strong>
 
         <span>
-          Asymmetric sawtooth potential
+          Flashing-ratchet potential and particle trajectories
         </span>
 
       </div>
@@ -493,7 +451,8 @@
       <figcaption>
 
         <strong>Figure 2.</strong>
-        The asymmetric potential used in the flashing-ratchet model.
+        Illustration of the flashing-ratchet mechanism and the resulting
+        particle motion.
 
       </figcaption>
 
@@ -501,25 +460,74 @@
 
 
     <p>
-      The net transport is quantified by the current
+      The average current is determined from the difference between
+      rightward and leftward transitions:
     </p>
 
 
     <div class="equation">
 
       $$
-      J(t)=
-      \frac{n^+(t)-n^-(t)}{N_p},
+      J
+      =
+      \frac{n^+-n^-}{N_p}.
       $$
 
     </div>
 
 
     <p>
-      where $n^+$ and $n^-$ are the numbers of particles moving right
-      and left, respectively. The current is then averaged over one
-      complete switching cycle.
+      The direction of transport depends on the asymmetry parameter
+      $\alpha$. For the parameters investigated in our simulations,
+      $\alpha<0.5$ produces a positive current, while $\alpha>0.5$
+      produces a negative current. At $\alpha=0.5$, the potential is
+      symmetric and the net current is approximately zero.
     </p>
+
+
+    <div class="result-grid">
+
+
+      <article class="result-card">
+
+        <strong>
+          $\alpha < 0.5$
+        </strong>
+
+        <p>
+          Positive current and preferential motion to the right.
+        </p>
+
+      </article>
+
+
+      <article class="result-card">
+
+        <strong>
+          $\alpha = 0.5$
+        </strong>
+
+        <p>
+          Symmetric potential and approximately zero net current.
+        </p>
+
+      </article>
+
+
+      <article class="result-card">
+
+        <strong>
+          $\alpha > 0.5$
+        </strong>
+
+        <p>
+          Negative current and preferential motion to the left.
+        </p>
+
+      </article>
+
+
+    </div>
 
 
     <figure class="figure">
@@ -529,7 +537,7 @@
         <strong>FIGURE 3</strong>
 
         <span>
-          Simulated particle trajectories
+          Average current as a function of $\alpha$
         </span>
 
       </div>
@@ -537,45 +545,20 @@
       <figcaption>
 
         <strong>Figure 3.</strong>
-        Particle trajectories over several flashing-ratchet cycles.
+        Average particle current as a function of the asymmetry
+        parameter $\alpha$.
 
       </figcaption>
 
     </figure>
 
-  </div>
-
-</section>
-
-
-
-<!-- =========================
-     DIRECTED TRANSPORT
-========================== -->
-
-<section class="section section-alt" id="transport">
-
-  <div class="section-heading">
-
-    <span>03</span>
-
-    <h2>Directed Transport</h2>
-
-  </div>
-
-
-  <div class="section-content">
 
     <p>
-      The asymmetry of the potential is controlled by the parameter
-      $\alpha$. Changing $\alpha$ changes the shape of the sawtooth
-      potential and can reverse the direction of transport.
-    </p>
-
-    <p>
-      In our simulations, the current is positive for $\alpha<0.5$
-      and negative for $\alpha>0.5$. At $\alpha=0.5$, the potential
-      is symmetric and the net current approaches zero.
+      The flashing interval $T_p$ also affects the resulting current.
+      If the potential is switched too quickly, particles have little
+      time to respond to the potential landscape. For intermediate
+      flashing intervals, a stronger directed current can emerge,
+      while very large flashing intervals reduce the current again.
     </p>
 
 
@@ -586,7 +569,7 @@
         <strong>FIGURE 4</strong>
 
         <span>
-          Average current as a function of $\alpha$
+          Average current as a function of flashing interval $T_p$
         </span>
 
       </div>
@@ -594,39 +577,8 @@
       <figcaption>
 
         <strong>Figure 4.</strong>
-        Reversal of the transport direction as the potential asymmetry
-        is changed.
-
-      </figcaption>
-
-    </figure>
-
-
-    <p>
-      The switching time $T_p$ also affects the transport. For very
-      short switching times, particles have little time to respond to
-      the potential. At intermediate times, the current becomes stronger,
-      while for sufficiently long switching times the current decreases
-      again in our simulations.
-    </p>
-
-
-    <figure class="figure">
-
-      <div class="image-placeholder">
-
-        <strong>FIGURE 5</strong>
-
-        <span>
-          Average current as a function of $T_p$
-        </span>
-
-      </div>
-
-      <figcaption>
-
-        <strong>Figure 5.</strong>
-        Dependence of the average current on the switching time.
+        Dependence of the average current on the flashing interval
+        $T_p$.
 
       </figcaption>
 
@@ -639,16 +591,16 @@
 
 
 <!-- =========================
-     ANALYTICAL COMPARISON
+     RESULTS
 ========================== -->
 
-<section class="section" id="analytical">
+<section class="section section-alt" id="results">
 
   <div class="section-heading">
 
-    <span>04</span>
+    <span>03</span>
 
-    <h2>Numerical and Analytical Results</h2>
+    <h2>Theoretical and Numerical Results</h2>
 
   </div>
 
@@ -656,8 +608,10 @@
   <div class="section-content">
 
     <p>
-      To validate the numerical model, we compare the simulated current
-      with an analytical expression:
+      The numerical simulations allow us to investigate how the current
+      depends on the asymmetry, flashing time and temperature. These
+      results can also be compared with an analytical expression for
+      the average current.
     </p>
 
 
@@ -686,10 +640,52 @@
 
 
     <p>
-      For the low-temperature regime investigated, the numerical and
-      analytical results show good agreement as a function of $\alpha$.
-      Small deviations arise from the finite number of particles,
-      stochastic fluctuations and the discrete numerical model.
+      For the low-temperature case investigated in the project, the
+      numerical and analytical results show good overall agreement for
+      a range of asymmetry parameters. Small deviations arise from the
+      discrete lattice, the finite number of particles and stochastic
+      fluctuations between simulations.
+    </p>
+
+
+    <figure class="figure">
+
+      <div class="image-placeholder">
+
+        <strong>FIGURE 5</strong>
+
+        <span>
+          Numerical and analytical current as a function of $\alpha$
+        </span>
+
+      </div>
+
+      <figcaption>
+
+        <strong>Figure 5.</strong>
+        Comparison between the numerical simulation and the analytical
+        prediction for the average current.
+
+      </figcaption>
+
+    </figure>
+
+
+    <p>
+      We also investigate the effect of the inverse temperature
+      parameter $\beta$. For small $\beta$, thermal fluctuations
+      dominate the motion and the numerical current approaches zero.
+      As $\beta$ increases, the potential has a stronger influence on
+      the particle dynamics.
+    </p>
+
+
+    <p>
+      For the parameter range studied, the numerical results become
+      increasingly similar to the analytical prediction as $\beta$
+      increases. The analytical expression does not explicitly contain
+      $\beta$, allowing us to investigate how temperature affects the
+      numerical transport relative to the theoretical approximation.
     </p>
 
 
@@ -700,7 +696,7 @@
         <strong>FIGURE 6</strong>
 
         <span>
-          Numerical and analytical current versus $\alpha$
+          Numerical and analytical current for different $\beta$
         </span>
 
       </div>
@@ -708,40 +704,8 @@
       <figcaption>
 
         <strong>Figure 6.</strong>
-        Comparison between the numerical current and the analytical
-        prediction.
-
-      </figcaption>
-
-    </figure>
-
-
-    <p>
-      We finally investigate the role of temperature through $\beta$.
-      At small $\beta$, thermal fluctuations dominate and the numerical
-      current is strongly reduced. As $\beta$ increases, the potential
-      has a stronger influence on the particle dynamics, and the
-      numerical result approaches the analytical prediction more closely.
-    </p>
-
-
-    <figure class="figure">
-
-      <div class="image-placeholder">
-
-        <strong>FIGURE 7</strong>
-
-        <span>
-          Numerical current for different values of $\beta$
-        </span>
-
-      </div>
-
-      <figcaption>
-
-        <strong>Figure 7.</strong>
-        Temperature dependence of the numerical current compared with
-        the analytical result.
+        Comparison between numerical and analytical current for
+        different values of the inverse temperature $\beta$.
 
       </figcaption>
 
@@ -755,10 +719,8 @@
       </span>
 
       <p>
-        Directed transport emerges from the combination of
-        <strong>thermal fluctuations</strong>,
-        <strong>spatial asymmetry</strong> and
-        <strong>periodic switching</strong>.
+        Stochastic thermal motion can produce directed transport when
+        combined with spatial asymmetry and time-dependent switching.
       </p>
 
     </div>
@@ -773,11 +735,11 @@
      CONCLUSION
 ========================== -->
 
-<section class="section section-alt" id="conclusion">
+<section class="section" id="conclusion">
 
   <div class="section-heading">
 
-    <span>05</span>
+    <span>04</span>
 
     <h2>Conclusion</h2>
 
@@ -787,30 +749,17 @@
   <div class="section-content">
 
     <p>
-      We investigated how thermal fluctuations and potential landscapes
-      determine stochastic particle motion. Starting from the diffusion
-      equation, we developed a discrete random-walk model with
-      Boltzmann-weighted transition probabilities.
+      The simulations demonstrate how random thermal motion can produce
+      directed transport when combined with an asymmetric potential and
+      periodic switching. The current depends on the asymmetry,
+      temperature and flashing time.
     </p>
 
     <p>
-      The simulations showed how different potentials produce different
-      particle distributions, and how temperature controls the balance
-      between random motion and potential-driven motion.
-    </p>
-
-    <p>
-      By periodically switching an asymmetric potential on and off,
-      random motion was converted into a measurable net current. The
-      direction of this current depended on the asymmetry parameter,
-      while its magnitude also depended on the switching time and
-      temperature.
-    </p>
-
-    <p>
-      Comparison with the analytical expression showed good agreement
-      within the investigated regime, while deviations demonstrated the
-      effects of stochastic fluctuations and the discrete numerical model.
+      Although the model is a simplified representation of biological
+      motor proteins, it captures an important physical principle:
+      stochastic motion can be converted into directed transport by
+      breaking the symmetry of the system.
     </p>
 
   </div>
@@ -836,3 +785,4 @@
 
 </body>
 </html>
+```
