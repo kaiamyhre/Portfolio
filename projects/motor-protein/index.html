@@ -1,6 +1,7 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
 
   <link rel="stylesheet" href="style.css">
 
+  <!-- MathJax -->
   <script>
     window.MathJax = {
       tex: {
@@ -24,815 +26,1082 @@
   </script>
 </head>
 
+
 <body>
 
-<header class="project-header">
-  <div class="header-inner">
-
-    <a href="../../index.html" class="back-link">
-      ← Portfolio
-    </a>
-
-    <p class="eyebrow">Computational Physics · Biophysics</p>
-
-    <h1>Modelling Motor Protein Motion</h1>
-
-    <p class="subtitle">
-      Stochastic Dynamics and Directed Transport
-    </p>
-
-    <p class="authors">
-      S. Blom · L. Bekkely · K. Myhre
-    </p>
-
-  </div>
-</header>
-
-
-<!-- =========================
-     CONTENT NAVIGATION
-========================= -->
-
-<nav class="contents" aria-label="Project sections">
-  <div class="contents-inner">
-
-    <span>Contents</span>
-
-    <a href="#introduction">01</a>
-    <a href="#diffusion">02</a>
-    <a href="#boltzmann">03</a>
-    <a href="#random-walk">04</a>
-    <a href="#potentials">05</a>
-    <a href="#temperature">06</a>
-    <a href="#ratchet">07</a>
-    <a href="#asymmetry">08</a>
-    <a href="#flashing">09</a>
-    <a href="#comparison">10</a>
-    <a href="#temperature-comparison">11</a>
-    <a href="#limitations">12</a>
-    <a href="#conclusion">13</a>
-    <a href="#project-info">14</a>
-
-  </div>
-</nav>
-
-
-<main>
 
   <!-- =========================
-       01 INTRODUCTION
+       HEADER
   ========================== -->
 
-  <section class="section" id="introduction">
+  <header class="project-header">
 
-    <div class="section-heading">
-      <span>01</span>
-      <h2>Introduction</h2>
+    <div class="header-inner">
+
+      <p class="author-name">
+        Kaia Myhre
+      </p>
+
+      <p class="eyebrow">
+        Computational Physics · Biophysics
+      </p>
+
+      <h1>
+        Modelling Motor Protein Motion
+      </h1>
+
+      <p class="subtitle">
+        Stochastic Dynamics and Directed Transport
+      </p>
+
+      <p class="authors">
+      K. Myhre · S. Blom · L. Bekkely
+      </p>
+
     </div>
 
-    <div class="section-content">
+  </header>
 
-      <p>
-        Motor proteins play an important role in transporting molecular cargo
-        within cells. Their ability to produce directed motion from thermal
-        fluctuations makes them an interesting example of stochastic processes
-        in biological systems.
-      </p>
 
-      <p>
-        In this project, we investigate how directed motion can emerge from
-        random walks in asymmetric potential landscapes. By modelling the
-        movement of particles under different potentials and temperatures,
-        we study how thermal fluctuations and potential asymmetry influence
-        the resulting particle dynamics.
-      </p>
 
-      <div class="highlight-box">
-        <span class="highlight-title">Main question</span>
+  <main>
+
+
+    <!-- =========================
+         01 INTRODUCTION
+    ========================== -->
+
+    <section class="section" id="introduction">
+
+      <div class="section-heading">
+        <span>01</span>
+        <h2>Introduction</h2>
+      </div>
+
+      <div class="section-content">
 
         <p>
-          How can stochastic thermal motion produce
-          <strong>directed transport</strong> when interacting with an
-          asymmetric potential landscape?
+          Motor proteins play an important role in transporting molecular
+          cargo within cells. Their ability to produce directed motion from
+          thermal fluctuations makes them an interesting example of
+          stochastic processes in biological systems.
         </p>
-      </div>
 
-    </div>
-  </section>
+        <p>
+          In this project, we investigate how directed motion can emerge
+          from random walks in asymmetric potential landscapes. By modelling
+          the movement of particles under different potentials and
+          temperatures, we study how thermal fluctuations and potential
+          asymmetry influence particle dynamics.
+        </p>
 
+        <div class="highlight-box">
 
-  <!-- =========================
-       02 DIFFUSION
-  ========================== -->
+          <span class="highlight-title">
+            Main question
+          </span>
 
-  <section class="section section-alt" id="diffusion">
-
-    <div class="section-heading">
-      <span>02</span>
-      <h2>Diffusion and stochastic motion</h2>
-    </div>
-
-    <div class="section-content">
-
-      <p>
-        We begin with the diffusion equation. For an initial distribution
-        $h(x)$, the solution can be written using the Gaussian heat kernel:
-      </p>
-
-      <div class="equation">
-        $$
-        \phi(x,t)=
-        \frac{1}{\sqrt{4\pi Dt}}
-        \int_{-\infty}^{\infty}
-        h(y)
-        \exp\left(-\frac{(x-y)^2}{4Dt}\right)\,dy
-        $$
-      </div>
-
-      <p>
-        This solution satisfies
-      </p>
-
-      <div class="equation">
-        $$
-        \frac{\partial\phi}{\partial t}
-        =
-        D\frac{\partial^2\phi}{\partial x^2}.
-        $$
-      </div>
-
-      <p>
-        As $t\rightarrow0$, the Gaussian kernel approaches a Dirac delta
-        distribution, giving
-      </p>
-
-      <div class="equation compact-equation">
-        $$
-        \phi(x,t)\rightarrow h(x).
-        $$
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- =========================
-       03 BOLTZMANN
-  ========================== -->
-
-  <section class="section" id="boltzmann">
-
-    <div class="section-heading">
-      <span>03</span>
-      <h2>Particles in potential landscapes</h2>
-    </div>
-
-    <div class="section-content">
-
-      <p>
-        At thermal equilibrium, the probability of finding a particle at
-        position $x$ follows the Boltzmann distribution:
-      </p>
-
-      <div class="equation">
-        $$
-        P(x)=\frac{e^{-\beta V(x)}}{Z},
-        \qquad
-        \beta=\frac{1}{k_BT}.
-        $$
-      </div>
-
-      <p>
-        Here, $k_B$ is Boltzmann's constant and $T$ is the temperature.
-        The parameter $\beta$ therefore controls the relative influence
-        of the potential and thermal fluctuations.
-      </p>
-
-      <div class="two-column">
-
-        <article class="info-card">
-          <h3>High temperature</h3>
           <p>
-            Thermal fluctuations dominate and particles behave more like
-            unbiased random walkers.
+            How can stochastic thermal motion produce
+            <strong>directed transport</strong> when interacting with an
+            asymmetric potential landscape?
           </p>
-        </article>
 
-        <article class="info-card">
-          <h3>Low temperature</h3>
-          <p>
-            The potential becomes more important and particles are more
-            strongly influenced by potential minima and barriers.
-          </p>
-        </article>
-
-      </div>
-
-      <figure class="figure">
-
-        <div class="image-placeholder">
-          <strong>FIGURE 1</strong>
-          <span>Potential landscape</span>
         </div>
 
-        <figcaption>
-          <strong>Figure 1.</strong>
-          Example of a potential landscape used to describe particle motion.
-        </figcaption>
-
-      </figure>
-
-    </div>
-  </section>
-
-
-  <!-- =========================
-       04 RANDOM WALK
-  ========================== -->
-
-  <section class="section section-alt" id="random-walk">
-
-    <div class="section-heading">
-      <span>04</span>
-      <h2>Random walks</h2>
-    </div>
-
-    <div class="section-content">
-
-      <p>
-        The stochastic dynamics are implemented as a discrete random walk.
-        At each time step, a particle can move left, remain stationary,
-        or move right.
-      </p>
-
-      <div class="equation">
-        $$
-        p^+=
-        \frac{e^{-\beta V(x+1)}}
-        {e^{-\beta V(x-1)}
-        +e^{-\beta V(x)}
-        +e^{-\beta V(x+1)}}
-        $$
       </div>
 
-      <div class="equation">
-        $$
-        p^-=
-        \frac{e^{-\beta V(x-1)}}
-        {e^{-\beta V(x-1)}
-        +e^{-\beta V(x)}
-        +e^{-\beta V(x+1)}}
-        $$
+    </section>
+
+
+
+    <!-- =========================
+         02 DIFFUSION
+    ========================== -->
+
+    <section class="section section-alt" id="diffusion">
+
+      <div class="section-heading">
+        <span>02</span>
+        <h2>Diffusion and stochastic motion</h2>
       </div>
 
-      <div class="equation compact-equation">
-        $$
-        p^0=1-p^+-p^-.
-        $$
-      </div>
+      <div class="section-content">
 
-      <p>
-        For a constant potential, all three probabilities are equal,
-        producing an unbiased random walk.
-      </p>
+        <p>
+          We begin by considering the diffusion equation. For an initial
+          distribution $h(x)$, the solution can be written using the
+          Gaussian heat kernel:
+        </p>
 
-      <figure class="figure">
-        <div class="image-placeholder">
-          <strong>FIGURE 2</strong>
-          <span>Random-walk trajectories or distributions</span>
+        <div class="equation">
+          $$
+          \phi(x,t)
+          =
+          \frac{1}{\sqrt{4\pi Dt}}
+          \int_{-\infty}^{\infty}
+          h(y)
+          \exp\left(
+          -\frac{(x-y)^2}{4Dt}
+          \right)
+          \,dy
+          $$
         </div>
 
-        <figcaption>
-          <strong>Figure 2.</strong>
-          Example of stochastic particle motion.
-        </figcaption>
-      </figure>
+        <p>
+          This solution satisfies
+        </p>
 
-    </div>
-  </section>
+        <div class="equation">
+          $$
+          \frac{\partial \phi}{\partial t}
+          =
+          D
+          \frac{\partial^2 \phi}{\partial x^2}.
+          $$
+        </div>
 
+        <p>
+          As $t \rightarrow 0$, the Gaussian kernel approaches a Dirac
+          delta distribution:
+        </p>
 
-  <!-- =========================
-       05 POTENTIALS
-  ========================== -->
+        <div class="equation compact-equation">
+          $$
+          \phi(x,t) \rightarrow h(x).
+          $$
+        </div>
 
-  <section class="section" id="potentials">
-
-    <div class="section-heading">
-      <span>05</span>
-      <h2>Potential landscapes</h2>
-    </div>
-
-    <div class="section-content">
-
-      <p>
-        Several potential landscapes were considered to investigate how
-        the energy landscape influences particle motion.
-      </p>
-
-      <div class="potential-grid">
-
-        <article class="potential-card">
-          <span class="card-number">01</span>
-          <h3>Constant</h3>
-
-          <div class="mini-equation">
-            $V_1(x)=k$
-          </div>
-
-          <p>
-            No preferred direction; approximately unbiased diffusion.
-          </p>
-        </article>
-
-        <article class="potential-card">
-          <span class="card-number">02</span>
-          <h3>Linear</h3>
-
-          <div class="mini-equation">
-            $V_2(x)=-kx$
-          </div>
-
-          <p>
-            Introduces a preferred direction.
-          </p>
-        </article>
-
-        <article class="potential-card">
-          <span class="card-number">03</span>
-          <h3>Periodic</h3>
-
-          <p>
-            Spatially varying wells and barriers.
-          </p>
-        </article>
-
-        <article class="potential-card">
-          <span class="card-number">04</span>
-          <h3>Quartic</h3>
-
-          <div class="mini-equation">
-            $V_4(x)=kx^4$
-          </div>
-
-          <p>
-            Confines particles towards the centre.
-          </p>
-        </article>
+        <p>
+          This provides the theoretical foundation for describing particle
+          motion as a stochastic diffusion process.
+        </p>
 
       </div>
 
-      <figure class="figure">
-        <div class="image-placeholder">
-          <strong>FIGURE 3</strong>
-          <span>Different potential landscapes</span>
+    </section>
+
+
+
+    <!-- =========================
+         03 BOLTZMANN
+    ========================== -->
+
+    <section class="section" id="boltzmann">
+
+      <div class="section-heading">
+        <span>03</span>
+        <h2>Particles in potential landscapes</h2>
+      </div>
+
+      <div class="section-content">
+
+        <p>
+          The particle dynamics are influenced by the potential energy
+          landscape $V(x)$. At thermal equilibrium, the probability of
+          finding a particle at a particular position follows the
+          Boltzmann distribution:
+        </p>
+
+        <div class="equation">
+          $$
+          P(x)
+          =
+          \frac{e^{-\beta V(x)}}{Z},
+          \qquad
+          \beta =
+          \frac{1}{k_B T}.
+          $$
         </div>
 
-        <figcaption>
-          <strong>Figure 3.</strong>
-          Potential landscapes investigated in the simulations.
-        </figcaption>
-      </figure>
+        <p>
+          Here, $k_B$ is Boltzmann's constant and $T$ is the temperature.
+          The parameter $\beta$ describes the relative importance of the
+          potential energy compared with thermal fluctuations.
+        </p>
 
-    </div>
-  </section>
+        <div class="two-column">
+
+          <article class="info-card">
+
+            <h3>High temperature</h3>
+
+            <p>
+              Thermal fluctuations dominate the dynamics and particles
+              behave more like unbiased random walkers.
+            </p>
+
+          </article>
 
 
-  <!-- =========================
-       06 TEMPERATURE
-  ========================== -->
+          <article class="info-card">
 
-  <section class="section section-alt" id="temperature">
+            <h3>Low temperature</h3>
 
-    <div class="section-heading">
-      <span>06</span>
-      <h2>The role of temperature</h2>
-    </div>
+            <p>
+              The potential becomes more important and particles are more
+              strongly influenced by potential minima and barriers.
+            </p>
 
-    <div class="section-content">
+          </article>
 
-      <p>
-        The parameter $\beta=1/(k_BT)$ controls the influence of the
-        potential relative to thermal fluctuations.
-      </p>
+        </div>
 
-      <div class="temperature-scale">
+
+        <figure class="figure">
+
+          <div class="image-placeholder">
+            <strong>FIGURE 1</strong>
+            <span>
+              Potential landscape
+            </span>
+          </div>
+
+          <figcaption>
+            <strong>Figure 1.</strong>
+            Example of a potential landscape used to describe particle
+            motion.
+          </figcaption>
+
+        </figure>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         04 RANDOM WALK
+    ========================== -->
+
+    <section class="section section-alt" id="random-walk">
+
+      <div class="section-heading">
+        <span>04</span>
+        <h2>Random walks</h2>
+      </div>
+
+      <div class="section-content">
+
+        <p>
+          The stochastic dynamics are implemented as a discrete random walk.
+          At each time step, a particle can move left, remain at its current
+          position, or move right.
+        </p>
+
+        <p>
+          The transition probabilities depend on the potential energy at
+          neighbouring positions.
+        </p>
+
+
+        <div class="equation">
+          $$
+          p^+
+          =
+          \frac{e^{-\beta V(x+1)}}
+          {e^{-\beta V(x-1)}
+          +e^{-\beta V(x)}
+          +e^{-\beta V(x+1)}}
+          $$
+        </div>
+
+
+        <div class="equation">
+          $$
+          p^-
+          =
+          \frac{e^{-\beta V(x-1)}}
+          {e^{-\beta V(x-1)}
+          +e^{-\beta V(x)}
+          +e^{-\beta V(x+1)}}
+          $$
+        </div>
+
+
+        <div class="equation compact-equation">
+          $$
+          p^0 = 1-p^+-p^-.
+          $$
+        </div>
+
+
+        <p>
+          For a constant potential, the three probabilities are equal.
+          The resulting motion therefore corresponds to an unbiased
+          random walk.
+        </p>
+
+
+        <figure class="figure">
+
+          <div class="image-placeholder">
+            <strong>FIGURE 2</strong>
+            <span>
+              Random-walk trajectories or particle distributions
+            </span>
+          </div>
+
+          <figcaption>
+            <strong>Figure 2.</strong>
+            Example of stochastic particle motion.
+          </figcaption>
+
+        </figure>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         05 POTENTIALS
+    ========================== -->
+
+    <section class="section" id="potentials">
+
+      <div class="section-heading">
+        <span>05</span>
+        <h2>Potential landscapes</h2>
+      </div>
+
+      <div class="section-content">
+
+        <p>
+          Several different landscapes were considered to investigate how
+          the potential influences particle motion.
+        </p>
+
+
+        <div class="potential-grid">
+
+
+          <article class="potential-card">
+
+            <span class="card-number">01</span>
+
+            <h3>Constant potential</h3>
+
+            <div class="mini-equation">
+              $$
+              V_1(x)=k
+              $$
+            </div>
+
+            <p>
+              No preferred direction. The particle performs approximately
+              unbiased diffusion.
+            </p>
+
+          </article>
+
+
+          <article class="potential-card">
+
+            <span class="card-number">02</span>
+
+            <h3>Linear potential</h3>
+
+            <div class="mini-equation">
+              $$
+              V_2(x)=-kx
+              $$
+            </div>
+
+            <p>
+              Introduces a preferred direction for particle motion.
+            </p>
+
+          </article>
+
+
+          <article class="potential-card">
+
+            <span class="card-number">03</span>
+
+            <h3>Periodic potential</h3>
+
+            <p>
+              A spatially varying landscape containing potential wells
+              and barriers.
+            </p>
+
+          </article>
+
+
+          <article class="potential-card">
+
+            <span class="card-number">04</span>
+
+            <h3>Quartic potential</h3>
+
+            <div class="mini-equation">
+              $$
+              V_4(x)=kx^4
+              $$
+            </div>
+
+            <p>
+              The rapidly increasing potential confines particles close
+              to the centre.
+            </p>
+
+          </article>
+
+
+        </div>
+
+
+        <figure class="figure">
+
+          <div class="image-placeholder">
+            <strong>FIGURE 3</strong>
+            <span>
+              Different potential landscapes
+            </span>
+          </div>
+
+          <figcaption>
+            <strong>Figure 3.</strong>
+            Potential landscapes investigated in the numerical simulations.
+          </figcaption>
+
+        </figure>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         06 TEMPERATURE
+    ========================== -->
+
+    <section class="section section-alt" id="temperature">
+
+      <div class="section-heading">
+        <span>06</span>
+        <h2>The role of temperature</h2>
+      </div>
+
+      <div class="section-content">
+
+        <p>
+          The parameter $\beta=1/(k_B T)$ controls the influence of the
+          potential relative to thermal fluctuations.
+        </p>
+
+
+        <div class="temperature-scale">
+
+          <div>
+            <span>Small $\beta$</span>
+            <strong>Thermal fluctuations dominate</strong>
+          </div>
+
+          <div class="scale-arrow">
+            →
+          </div>
+
+          <div>
+            <span>Large $\beta$</span>
+            <strong>Potential dominates</strong>
+          </div>
+
+        </div>
+
+
+        <figure class="figure">
+
+          <div class="image-placeholder">
+            <strong>FIGURE 4</strong>
+            <span>
+              Particle distributions for different values of $\beta$
+            </span>
+          </div>
+
+          <figcaption>
+            <strong>Figure 4.</strong>
+            Particle distributions for different inverse temperatures.
+          </figcaption>
+
+        </figure>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         07 FLASHING RATCHET
+    ========================== -->
+
+    <section class="section" id="ratchet">
+
+      <div class="section-heading">
+        <span>07</span>
+        <h2>From random walks to directed transport</h2>
+      </div>
+
+      <div class="section-content">
+
+        <p>
+          A central part of the project is the flashing ratchet model.
+          The system alternates between a flat potential, where particles
+          can diffuse freely, and an asymmetric periodic potential.
+        </p>
+
+        <p>
+          During the flat-potential phase, thermal fluctuations allow
+          particles to spread out. When the asymmetric potential is
+          switched on, particles tend to move towards nearby potential
+          minima.
+        </p>
+
+        <p>
+          Repeating this process can result in a net displacement even
+          though the underlying particle motion is stochastic.
+        </p>
+
+
+        <div class="ratchet-process">
+
+
+          <article class="process-step">
+
+            <span>1</span>
+
+            <h3>Diffuse</h3>
+
+            <p>
+              Particles undergo thermal diffusion.
+            </p>
+
+          </article>
+
+
+          <span class="process-arrow">→</span>
+
+
+          <article class="process-step">
+
+            <span>2</span>
+
+            <h3>Switch on</h3>
+
+            <p>
+              The asymmetric potential is introduced.
+            </p>
+
+          </article>
+
+
+          <span class="process-arrow">→</span>
+
+
+          <article class="process-step">
+
+            <span>3</span>
+
+            <h3>Relax</h3>
+
+            <p>
+              Particles move towards nearby minima.
+            </p>
+
+          </article>
+
+
+          <span class="process-arrow">→</span>
+
+
+          <article class="process-step">
+
+            <span>4</span>
+
+            <h3>Repeat</h3>
+
+            <p>
+              Repeated switching produces a net current.
+            </p>
+
+          </article>
+
+
+        </div>
+
+
+        <figure class="figure">
+
+          <div class="image-placeholder">
+            <strong>FIGURE 5</strong>
+            <span>
+              Flashing-ratchet potential or particle trajectory
+            </span>
+          </div>
+
+          <figcaption>
+            <strong>Figure 5.</strong>
+            Schematic or numerical illustration of the flashing-ratchet
+            mechanism.
+          </figcaption>
+
+        </figure>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         08 ASYMMETRY
+    ========================== -->
+
+    <section class="section section-alt" id="asymmetry">
+
+      <div class="section-heading">
+        <span>08</span>
+        <h2>Asymmetric potentials and current</h2>
+      </div>
+
+      <div class="section-content">
+
+        <p>
+          The direction of transport depends strongly on the asymmetry
+          of the potential. The average particle current is measured using
+          the difference between rightward and leftward transitions:
+        </p>
+
+
+        <div class="equation">
+          $$
+          J
+          =
+          \frac{n^+ - n^-}{N_p}.
+          $$
+        </div>
+
+
+        <div class="result-grid">
+
+
+          <article class="result-card">
+
+            <strong>
+              α &lt; 0.5
+            </strong>
+
+            <p>
+              Positive current and preferential motion to the right.
+            </p>
+
+          </article>
+
+
+          <article class="result-card">
+
+            <strong>
+              α = 0.5
+            </strong>
+
+            <p>
+              Symmetric potential and approximately zero net current.
+            </p>
+
+          </article>
+
+
+          <article class="result-card">
+
+            <strong>
+              α &gt; 0.5
+            </strong>
+
+            <p>
+              Negative current and preferential motion to the left.
+            </p>
+
+          </article>
+
+
+        </div>
+
+
+        <figure class="figure">
+
+          <div class="image-placeholder">
+            <strong>FIGURE 6</strong>
+            <span>
+              Average current $J$ as a function of $\alpha$
+            </span>
+          </div>
+
+          <figcaption>
+            <strong>Figure 6.</strong>
+            Average particle current as a function of the asymmetry
+            parameter $\alpha$.
+          </figcaption>
+
+        </figure>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         09 FLASHING INTERVAL
+    ========================== -->
+
+    <section class="section" id="flashing">
+
+      <div class="section-heading">
+        <span>09</span>
+        <h2>Effect of the flashing interval</h2>
+      </div>
+
+      <div class="section-content">
+
+        <p>
+          The duration of each flashing phase also influences the
+          resulting current. If the potential is switched too quickly,
+          particles do not have enough time to respond to the potential
+          landscape.
+        </p>
+
+        <p>
+          For intermediate flashing intervals, a stronger directed
+          current can emerge. If the flashing interval becomes very
+          large, the current can decrease again.
+        </p>
+
+
+        <div class="equation">
+
+          $$
+          J_{\mathrm{avg}}
+          =
+          \frac{N_x}{4T_p}
+          \left[
+          \operatorname{erfc}
+          \left(
+          \frac{\alpha N_x}{2}
+          \sqrt{\frac{3}{T_p}}
+          \right)
+          -
+          \operatorname{erfc}
+          \left(
+          \frac{(1-\alpha)N_x}{2}
+          \sqrt{\frac{3}{T_p}}
+          \right)
+          \right].
+          $$
+
+        </div>
+
+
+        <p>
+          This analytical expression provides a theoretical prediction
+          for the average current and can be compared with the numerical
+          simulations.
+        </p>
+
+
+        <figure class="figure">
+
+          <div class="image-placeholder">
+            <strong>FIGURE 7</strong>
+            <span>
+              Current as a function of flashing interval $T_p$
+            </span>
+          </div>
+
+          <figcaption>
+            <strong>Figure 7.</strong>
+            Dependence of the average current on the flashing interval.
+          </figcaption>
+
+        </figure>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         10 NUMERICAL VS ANALYTICAL
+    ========================== -->
+
+    <section class="section section-alt" id="comparison">
+
+      <div class="section-heading">
+        <span>10</span>
+        <h2>Numerical and analytical comparison</h2>
+      </div>
+
+      <div class="section-content">
+
+        <p>
+          The numerical simulations were compared with the analytical
+          expression for the average current. For a range of asymmetry
+          parameters, the numerical and analytical results show good
+          agreement.
+        </p>
+
+        <p>
+          Small deviations can occur because the numerical model uses a
+          discrete lattice and a finite number of particles. Stochastic
+          fluctuations also introduce variation between simulations.
+        </p>
+
+
+        <figure class="figure">
+
+          <div class="image-placeholder">
+            <strong>FIGURE 8</strong>
+            <span>
+              Numerical versus analytical comparison
+            </span>
+          </div>
+
+          <figcaption>
+            <strong>Figure 8.</strong>
+            Comparison between numerical simulations and the analytical
+            prediction for the average current.
+          </figcaption>
+
+        </figure>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         11 TEMPERATURE COMPARISON
+    ========================== -->
+
+    <section class="section" id="temperature-comparison">
+
+      <div class="section-heading">
+        <span>11</span>
+        <h2>Temperature dependence</h2>
+      </div>
+
+      <div class="section-content">
+
+        <p>
+          Increasing $\beta$ strengthens the influence of the potential
+          relative to thermal fluctuations.
+        </p>
+
+        <p>
+          At very small $\beta$, the potential is weak compared with
+          thermal fluctuations and the numerical current approaches zero.
+          For larger $\beta$, the numerical results become increasingly
+          similar to the analytical prediction.
+        </p>
+
+
+        <figure class="figure">
+
+          <div class="image-placeholder">
+            <strong>FIGURE 9</strong>
+            <span>
+              Effect of $\beta$ on numerical and analytical current
+            </span>
+          </div>
+
+          <figcaption>
+            <strong>Figure 9.</strong>
+            Influence of the inverse temperature parameter $\beta$ on
+            numerical and analytical current.
+          </figcaption>
+
+        </figure>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         12 LIMITATIONS
+    ========================== -->
+
+    <section class="section section-alt" id="limitations">
+
+      <div class="section-heading">
+        <span>12</span>
+        <h2>Limitations and interpretation</h2>
+      </div>
+
+      <div class="section-content">
+
+        <p>
+          The analytical solution provides a useful description of average
+          transport behaviour, but it does not necessarily reproduce every
+          feature of the numerical model.
+        </p>
+
+        <p>
+          Several effects can contribute to deviations between the two
+          approaches. The numerical model uses a discrete spatial lattice
+          and a finite number of particles, while the analytical treatment
+          relies on approximations associated with the underlying diffusion
+          process.
+        </p>
+
+
+        <div class="highlight-box">
+
+          <span class="highlight-title">
+            Key observation
+          </span>
+
+          <p>
+            Directed transport does not require deterministic particle
+            motion. Stochastic thermal motion combined with spatial
+            asymmetry and time-dependent switching can produce a measurable
+            net current.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         13 CONCLUSION
+    ========================== -->
+
+    <section class="section" id="conclusion">
+
+      <div class="section-heading">
+        <span>13</span>
+        <h2>Conclusion</h2>
+      </div>
+
+      <div class="section-content">
+
+        <p>
+          This project investigated stochastic particle motion in different
+          potential landscapes, with particular focus on the flashing
+          ratchet mechanism for directed transport.
+        </p>
+
+        <p>
+          The simulations demonstrated how temperature, potential shape,
+          asymmetry, and flashing time influence particle distributions
+          and net current.
+        </p>
+
+        <p>
+          Comparing the numerical simulations with an analytical expression
+          showed agreement under suitable conditions, while also
+          illustrating the limitations of analytical approximations.
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         14 PROJECT INFORMATION
+    ========================== -->
+
+    <section class="section project-info" id="project-info">
+
+      <div class="section-heading">
+        <span>14</span>
+        <h2>Project information</h2>
+      </div>
+
+
+      <div class="info-grid">
+
 
         <div>
-          <span>Small $\beta$</span>
-          <strong>Thermal fluctuations</strong>
+
+          <h3>Project type</h3>
+
+          <p>
+            Group project
+          </p>
+
         </div>
 
-        <div class="scale-arrow">→</div>
 
         <div>
-          <span>Large $\beta$</span>
-          <strong>Potential dominates</strong>
+
+          <h3>Methods</h3>
+
+          <p>
+            Stochastic simulation · Numerical modelling · Analytical analysis
+          </p>
+
         </div>
 
-      </div>
 
-      <figure class="figure">
-        <div class="image-placeholder">
-          <strong>FIGURE 4</strong>
-          <span>Particle distributions for different $\beta$</span>
+        <div>
+
+          <h3>Tools</h3>
+
+          <p>
+            MATLAB · Numerical methods · Data analysis
+          </p>
+
         </div>
 
-        <figcaption>
-          <strong>Figure 4.</strong>
-          Particle distributions for different inverse temperatures.
-        </figcaption>
-      </figure>
-
-    </div>
-  </section>
-
-
-  <!-- =========================
-       07 FLASHING RATCHET
-  ========================== -->
-
-  <section class="section" id="ratchet">
-
-    <div class="section-heading">
-      <span>07</span>
-      <h2>From random walks to directed transport</h2>
-    </div>
-
-    <div class="section-content">
-
-      <p>
-        The flashing ratchet alternates between a flat potential, where
-        particles diffuse freely, and an asymmetric periodic potential.
-      </p>
-
-      <p>
-        Repeated switching can produce a net displacement even though
-        the underlying particle motion is stochastic.
-      </p>
-
-      <div class="ratchet-process">
-
-        <article class="process-step">
-          <span>1</span>
-          <h3>Diffuse</h3>
-          <p>Particles undergo thermal diffusion.</p>
-        </article>
-
-        <span class="process-arrow">→</span>
-
-        <article class="process-step">
-          <span>2</span>
-          <h3>Switch on</h3>
-          <p>The asymmetric potential is introduced.</p>
-        </article>
-
-        <span class="process-arrow">→</span>
-
-        <article class="process-step">
-          <span>3</span>
-          <h3>Relax</h3>
-          <p>Particles move towards nearby minima.</p>
-        </article>
-
-        <span class="process-arrow">→</span>
-
-        <article class="process-step">
-          <span>4</span>
-          <h3>Repeat</h3>
-          <p>The process generates a net current.</p>
-        </article>
 
       </div>
 
-      <figure class="figure">
-        <div class="image-placeholder">
-          <strong>FIGURE 5</strong>
-          <span>Flashing-ratchet simulation or animation</span>
-        </div>
 
-        <figcaption>
-          <strong>Figure 5.</strong>
-          Illustration of the flashing-ratchet mechanism.
-        </figcaption>
-      </figure>
+      <p class="group-note">
+        This project was completed as part of a group. The full source code
+        and project report are available in the group's GitHub repository.
+      </p>
 
-    </div>
-  </section>
+
+      <a
+        href="#"
+        class="button">
+        GitHub repository →
+      </a>
+
+    </section>
+
+
+  </main>
+
 
 
   <!-- =========================
-       08 ASYMMETRY
+       FOOTER
   ========================== -->
 
-  <section class="section section-alt" id="asymmetry">
+  <footer class="footer">
 
-    <div class="section-heading">
-      <span>08</span>
-      <h2>Asymmetry and current</h2>
-    </div>
-
-    <div class="section-content">
-
-      <p>
-        The average particle current is measured from the difference
-        between rightward and leftward transitions:
-      </p>
-
-      <div class="equation">
-        $$
-        J=\frac{n^+-n^-}{N_p}.
-        $$
-      </div>
-
-      <div class="result-grid">
-
-        <article class="result-card">
-          <strong>α &lt; 0.5</strong>
-          <p>Positive current.</p>
-        </article>
-
-        <article class="result-card">
-          <strong>α = 0.5</strong>
-          <p>Approximately zero current.</p>
-        </article>
-
-        <article class="result-card">
-          <strong>α &gt; 0.5</strong>
-          <p>Negative current.</p>
-        </article>
-
-      </div>
-
-      <figure class="figure">
-        <div class="image-placeholder">
-          <strong>FIGURE 6</strong>
-          <span>Average current J versus α</span>
-        </div>
-
-        <figcaption>
-          <strong>Figure 6.</strong>
-          Average particle current as a function of asymmetry.
-        </figcaption>
-      </figure>
-
-    </div>
-  </section>
-
-
-  <!-- =========================
-       09 FLASHING INTERVAL
-  ========================== -->
-
-  <section class="section" id="flashing">
-
-    <div class="section-heading">
-      <span>09</span>
-      <h2>Effect of the flashing interval</h2>
-    </div>
-
-    <div class="section-content">
-
-      <p>
-        The duration of each flashing phase influences the resulting
-        particle current. Intermediate flashing intervals can produce
-        stronger directed transport than very short or very long intervals.
-      </p>
-
-      <div class="equation">
-        $$
-        J_{\mathrm{avg}}
-        =
-        \frac{N_x}{4T_p}
-        \left[
-        \operatorname{erfc}
-        \left(
-        \frac{\alpha N_x}{2}
-        \sqrt{\frac{3}{T_p}}
-        \right)
-        -
-        \operatorname{erfc}
-        \left(
-        \frac{(1-\alpha)N_x}{2}
-        \sqrt{\frac{3}{T_p}}
-        \right)
-        \right].
-        $$
-      </div>
-
-      <figure class="figure">
-        <div class="image-placeholder">
-          <strong>FIGURE 7</strong>
-          <span>Current versus flashing interval $T_p$</span>
-        </div>
-
-        <figcaption>
-          <strong>Figure 7.</strong>
-          Dependence of average current on flashing interval.
-        </figcaption>
-      </figure>
-
-    </div>
-  </section>
-
-
-  <!-- =========================
-       10 COMPARISON
-  ========================== -->
-
-  <section class="section section-alt" id="comparison">
-
-    <div class="section-heading">
-      <span>10</span>
-      <h2>Numerical and analytical comparison</h2>
-    </div>
-
-    <div class="section-content">
-
-      <p>
-        Numerical simulations were compared with the analytical expression
-        for the average current. The two approaches show agreement over
-        a range of asymmetry parameters, while deviations can arise from
-        the discrete lattice, finite particle number, and stochastic
-        fluctuations.
-      </p>
-
-      <figure class="figure">
-        <div class="image-placeholder">
-          <strong>FIGURE 8</strong>
-          <span>Numerical versus analytical results</span>
-        </div>
-
-        <figcaption>
-          <strong>Figure 8.</strong>
-          Comparison between numerical and analytical predictions.
-        </figcaption>
-      </figure>
-
-    </div>
-  </section>
-
-
-  <!-- =========================
-       11 TEMPERATURE COMPARISON
-  ========================== -->
-
-  <section class="section" id="temperature-comparison">
-
-    <div class="section-heading">
-      <span>11</span>
-      <h2>Temperature dependence</h2>
-    </div>
-
-    <div class="section-content">
-
-      <p>
-        Increasing $\beta$ strengthens the influence of the potential
-        relative to thermal fluctuations. At small $\beta$, the numerical
-        current approaches zero, while larger $\beta$ values produce
-        closer agreement with the analytical prediction.
-      </p>
-
-      <figure class="figure">
-        <div class="image-placeholder">
-          <strong>FIGURE 9</strong>
-          <span>Effect of β on numerical and analytical current</span>
-        </div>
-
-        <figcaption>
-          <strong>Figure 9.</strong>
-          Influence of inverse temperature on particle current.
-        </figcaption>
-      </figure>
-
-    </div>
-  </section>
-
-
-  <!-- =========================
-       12 LIMITATIONS
-  ========================== -->
-
-  <section class="section section-alt" id="limitations">
-
-    <div class="section-heading">
-      <span>12</span>
-      <h2>Limitations and interpretation</h2>
-    </div>
-
-    <div class="section-content">
-
-      <p>
-        The analytical solution provides a useful description of average
-        transport behaviour, but does not reproduce every feature of the
-        numerical model.
-      </p>
-
-      <div class="highlight-box">
-        <span class="highlight-title">Key observation</span>
-
-        <p>
-          Directed transport can emerge from stochastic thermal motion
-          when spatial asymmetry is combined with time-dependent switching.
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- =========================
-       13 CONCLUSION
-  ========================== -->
-
-  <section class="section" id="conclusion">
-
-    <div class="section-heading">
-      <span>13</span>
-      <h2>Conclusion</h2>
-    </div>
-
-    <div class="section-content">
-
-      <p>
-        This project investigated stochastic particle motion in different
-        potential landscapes, with particular focus on the flashing-ratchet
-        mechanism for directed transport.
-      </p>
-
-      <p>
-        The simulations demonstrated how temperature, potential shape,
-        asymmetry, and flashing time influence particle distributions and
-        net current.
-      </p>
-
-      <p>
-        Comparing numerical simulations with an analytical expression showed
-        agreement under suitable conditions while also illustrating the
-        limitations of analytical approximations.
-      </p>
-
-    </div>
-  </section>
-
-
-  <!-- =========================
-       14 PROJECT INFORMATION
-  ========================== -->
-
-  <section class="section project-info" id="project-info">
-
-    <div class="section-heading">
-      <span>14</span>
-      <h2>Project information</h2>
-    </div>
-
-    <div class="info-grid">
-
-      <div>
-        <h3>Project type</h3>
-        <p>Group project</p>
-      </div>
-
-      <div>
-        <h3>Methods</h3>
-        <p>
-          Stochastic simulation · Numerical modelling · Analytical analysis
-        </p>
-      </div>
-
-      <div>
-        <h3>Tools</h3>
-        <p>
-          MATLAB · Numerical methods · Data analysis
-        </p>
-      </div>
-
-    </div>
-
-    <p class="group-note">
-      This project was completed as part of a group. The full source code
-      and project report are available in the group's GitHub repository.
+    <p>
+      © 2026 Kaia Myhre
     </p>
 
-    <a href="#" class="button">
-      GitHub repository →
-    </a>
+  </footer>
 
-  </section>
-
-</main>
-
-
-<footer class="footer">
-
-  <a href="../../index.html">
-    ← Back to portfolio
-  </a>
-
-  <p>© 2026 Kaia Myhre</p>
-
-</footer>
 
 </body>
 </html>
