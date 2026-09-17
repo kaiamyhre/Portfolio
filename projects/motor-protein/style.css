@@ -1,377 +1,819 @@
-:root {
-  --bg: #f5f7fb;
-  --surface: #ffffff;
-  --text: #1a2233;
-  --muted: #53607a;
-  --accent: #2155cc;
-  --border: #dce3f0;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
-  color: var(--text);
-  background: var(--bg);
-  line-height: 1.6;
-}
-
-/* =========================
-   HEADER
-   ========================= */
-
-.project-header {
-  background: linear-gradient(145deg, #0d1630, #1b2a52);
-  color: #f8fbff;
-  padding: 1.5rem 1.5rem 4rem;
-}
-
-.header-inner {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.back-link {
-  color: #f8fbff;
-  text-decoration: none;
-  display: inline-block;
-  margin-bottom: 3.5rem;
-}
-
-.back-link:hover {
-  text-decoration: underline;
-}
-
-.project-header .eyebrow {
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #c5d4ff;
-  font-size: 0.85rem;
-}
-
-.project-header h1 {
-  margin: 0.5rem 0 1rem;
-  max-width: 750px;
-  font-size: clamp(1.9rem, 4vw, 2.7rem);
-  line-height: 1.25;
-}
-
-.subtitle {
-  margin: 0;
-  color: #d8e1f7;
-  font-size: 1.1rem;
-}
-
-.authors {
-  margin-top: 1rem;
-  color: #c5d4ff;
-}
-
-
-/* =========================
-   MAIN PROJECT CONTAINER
-   ========================= */
-
-main {
-  max-width: 1000px;
-  margin: -2rem auto 3rem;
-  padding: 0 1.5rem;
-}
-
-.project-container {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 2.5rem;
-}
-
-
-/* =========================
-   PROJECT CONTENT
-   ========================= */
-
-.project-section {
-  margin-bottom: 3.5rem;
-}
-
-.project-section:last-child {
-  margin-bottom: 0;
-}
-
-.project-section h2 {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  line-height: 1.25;
-  font-size: 1.7rem;
-}
-
-.project-section h3 {
-  margin-top: 2rem;
-  margin-bottom: 0.7rem;
-  line-height: 1.25;
-}
-
-.project-section p {
-  max-width: 850px;
-}
-
-.project-section ul {
-  max-width: 850px;
-}
-
-
-/* =========================
-   EQUATIONS
-   ========================= */
-
-.equation {
-  margin: 2rem 0;
-  padding: 1rem 0;
-  overflow-x: auto;
-  text-align: center;
-}
-
-
-/* =========================
-   FIGURES
-   ========================= */
-
-.figure {
-  margin: 2rem 0;
-}
-
-.figure img {
-  display: block;
-  width: 100%;
-  max-width: 850px;
-  height: auto;
-  margin: 0 auto;
-}
-
-.figure figcaption {
-  margin-top: 0.7rem;
-  color: var(--muted);
-  font-size: 0.9rem;
-  text-align: center;
-}
-
-
-/* =========================
-   TWO COLUMN CONTENT
-   ========================= */
-
-.two-column {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  align-items: center;
-  margin: 2rem 0;
-}
-
-
-/* =========================
-   POTENTIAL LANDSCAPES
-   ========================= */
-
-.potential-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin: 2rem 0;
-}
-
-.potential-card {
-  padding: 0;
-}
-
-.potential-card h3 {
-  margin-top: 0;
-}
-
-
-/* =========================
-   HIGHLIGHTED INFORMATION
-   ========================= */
-
-.highlight-box {
-  border-left: 4px solid var(--accent);
-  padding: 1rem 1.25rem;
-  margin: 2rem 0;
-  background: #eef3ff;
-}
-
-.highlight-box p:last-child {
-  margin-bottom: 0;
-}
-
-
-/* =========================
-   RESULTS
-   ========================= */
-
-.result-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin: 2rem 0;
-}
-
-.result-card {
-  border-top: 2px solid var(--border);
-  padding-top: 1rem;
-}
-
-.result-card h3 {
-  margin-top: 0;
-}
-
-.result-number {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--accent);
-}
-
-
-/* =========================
-   RAT​​CHET PROCESS
-   ========================= */
-
-.ratchet-process {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin: 2rem 0;
-  flex-wrap: wrap;
-}
-
-.process-step {
-  text-align: center;
-  max-width: 180px;
-}
-
-.process-arrow {
-  font-size: 1.5rem;
-  color: var(--accent);
-}
-
-
-/* =========================
-   TEMPERATURE SCALE
-   ========================= */
-
-.temperature-scale {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin: 2rem 0;
-}
-
-.temperature-scale .arrow {
-  color: var(--accent);
-}
-
-
-/* =========================
-   PROJECT INFORMATION
-   ========================= */
-
-.project-info {
-  border-top: 1px solid var(--border);
-  margin-top: 3rem;
-  padding-top: 2rem;
-}
-
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-}
-
-.info-card {
-  padding: 0;
-}
-
-.info-card h3 {
-  margin-top: 0;
-}
-
-
-/* =========================
-   LINKS
-   ========================= */
-
-a {
-  color: var(--accent);
-}
-
-.button {
-  display: inline-block;
-  background: var(--accent);
-  color: white;
-  text-decoration: none;
-  padding: 0.65rem 1rem;
-  border-radius: 8px;
-  margin-top: 0.5rem;
-}
-
-.button:hover {
-  opacity: 0.9;
-}
-
-
-/* =========================
-   FOOTER
-   ========================= */
-
-.footer {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 1.5rem 2rem;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-
-/* =========================
-   MOBILE
-   ========================= */
-
-@media (max-width: 700px) {
-  main {
-    padding: 0 1rem;
-  }
-
-  .project-container {
-    padding: 1.5rem;
-  }
-
-  .two-column {
-    grid-template-columns: 1fr;
-  }
-
-  .potential-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .result-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .info-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .project-header {
-    padding-bottom: 3rem;
-  }
-}
-
-  .section {
-    padding: 1.4rem;
-  }
-}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Modelling Motor Protein Motion | Kaia Myhre</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+
+  <script
+    async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header class="project-header">
+
+    <div class="header-inner">
+
+      <p class="author-name">
+        Kaia Myhre
+      </p>
+
+      <p class="eyebrow">
+        Computational Physics · Biophysics
+      </p>
+
+      <h1>
+        Modelling Motor Protein Motion
+      </h1>
+
+      <p class="subtitle">
+        Stochastic Dynamics and Directed Transport
+      </p>
+
+      <p class="authors">
+        K. Myhre · S. Blom · L. Bekkely
+      </p>
+
+    </div>
+
+  </header>
+
+
+  <main>
+
+    <div class="project-container">
+
+      <!-- =========================
+           INTRODUCTION
+      ========================== -->
+
+      <section class="project-section" id="introduction">
+
+        <p>
+          Brownian motion describes the random movement of microscopic
+          particles caused by thermal fluctuations. While this motion has no
+          preferred direction on its own, biological systems such as molecular
+          motors are able to convert these fluctuations into directed transport.
+        </p>
+
+        <p>
+          In this project, we investigate how an asymmetric and time-dependent
+          potential can produce a net particle current from otherwise random
+          motion. We develop a numerical model of a
+          <strong>Brownian ratchet</strong> and compare the resulting particle
+          current with an analytical solution.
+        </p>
+
+
+        <div class="highlight-box">
+
+          <strong>Main question</strong>
+
+          <p>
+            How can stochastic thermal motion produce
+            <strong>directed transport</strong> in an asymmetric,
+            time-dependent potential?
+          </p>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- =========================
+           STOCHASTIC MOTION
+      ========================== -->
+
+      <section class="project-section" id="stochastic-motion">
+
+        <h2>From Diffusion to Particle Motion</h2>
+
+
+        <p>
+          At microscopic scales, thermal fluctuations produce irregular
+          Brownian motion. The evolution of a particle distribution can be
+          described by the one-dimensional diffusion equation,
+        </p>
+
+
+        <div class="equation">
+
+          $$
+          \frac{\partial \phi(x,t)}{\partial t}
+          =
+          D\frac{\partial^2\phi(x,t)}{\partial x^2}.
+          $$
+
+        </div>
+
+
+        <p>
+          For an initial distribution $h(x)$, a solution is given by the
+          Gaussian heat kernel,
+        </p>
+
+
+        <div class="equation">
+
+          $$
+          \phi(x,t)
+          =
+          \frac{1}{\sqrt{4\pi Dt}}
+          \int_{-\infty}^{\infty}
+          h(y)
+          \exp\left(
+          -\frac{(x-y)^2}{4Dt}
+          \right)
+          \,dy.
+          $$
+
+        </div>
+
+
+        <p>
+          We verified that this expression satisfies the diffusion equation.
+          As $t\rightarrow0$, the Gaussian becomes localized around $x=y$,
+          giving $\phi(x,0)=h(x)$. The function $h(x)$ therefore represents
+          the initial particle distribution.
+        </p>
+
+
+        <h3>From diffusion to a random walk</h3>
+
+
+        <p>
+          In the numerical model, particles perform a random walk on a
+          one-dimensional lattice. At each time step, a particle can move
+          left, remain stationary, or move right. A potential $V(x)$ changes
+          these probabilities according to the Boltzmann distribution,
+        </p>
+
+
+        <div class="equation">
+
+          $$
+          P(x)
+          =
+          \frac{e^{-\beta V(x)}}{Z},
+          \qquad
+          \beta=\frac{1}{k_BT}.
+          $$
+
+        </div>
+
+
+        <p>
+          Applying this to the neighboring lattice positions gives
+        </p>
+
+
+        <div class="equation">
+
+          $$
+          \begin{aligned}
+          p^+
+          &=
+          \frac{e^{-\beta V(x+1)}}{Z_x},
+          \qquad
+          p^0
+          =
+          \frac{e^{-\beta V(x)}}{Z_x},
+          \qquad
+          p^-
+          =
+          \frac{e^{-\beta V(x-1)}}{Z_x},
+          \\[4pt]
+          Z_x
+          &=
+          e^{-\beta V(x-1)}
+          +e^{-\beta V(x)}
+          +e^{-\beta V(x+1)}.
+          \end{aligned}
+          $$
+
+        </div>
+
+
+        <p>
+          The parameter $\beta$ determines the competition between
+          <strong>thermal fluctuations and the potential landscape</strong>.
+          At high temperatures the three movements become approximately
+          equally likely,
+          $p^+\approx p^0\approx p^-\approx1/3$. At low temperatures,
+          potential differences dominate and particles tend to remain near
+          low-energy states.
+        </p>
+
+
+        <h3>Different potential landscapes</h3>
+
+
+        <p>
+          We implemented the stochastic model in Python using
+          <strong>NumPy, SciPy and Matplotlib</strong> and simulated
+          10,000 particles in several potential landscapes.
+        </p>
+
+
+        <!-- =========================
+             POTENTIAL LANDSCAPES BOX
+        ========================== -->
+
+        <div class="content-box">
+
+          <p class="box-label">
+            Potential Landscapes
+          </p>
+
+
+          <div class="potential-grid">
+
+
+            <article class="potential-card">
+
+              <h3>Constant potential</h3>
+
+              <div class="equation">
+
+                $$
+                V(x)=k
+                $$
+
+              </div>
+
+              <p>
+                Produces approximately unbiased diffusion.
+              </p>
+
+            </article>
+
+
+            <article class="potential-card">
+
+              <h3>Linear potential</h3>
+
+              <div class="equation">
+
+                $$
+                V(x)=-kx
+                $$
+
+              </div>
+
+              <p>
+                Biases particle motion in one direction.
+              </p>
+
+            </article>
+
+
+            <article class="potential-card">
+
+              <h3>Periodic potential</h3>
+
+              <div class="equation">
+
+                $$
+                V(x)
+                =
+                k\left(
+                \frac{x}{15}
+                -
+                \cos\left(\frac{x}{3}\right)
+                \right)
+                $$
+
+              </div>
+
+              <p>
+                Creates repeated energy barriers and local minima.
+              </p>
+
+            </article>
+
+
+            <article class="potential-card">
+
+              <h3>Quartic potential</h3>
+
+              <div class="equation">
+
+                $$
+                V(x)=kx^4
+                $$
+
+              </div>
+
+              <p>
+                Strongly confines particles around the centre.
+              </p>
+
+            </article>
+
+
+          </div>
+
+        </div>
+
+
+        <figure class="figure">
+
+          <div class="image-placeholder">
+
+            <strong>FIGURE 1</strong>
+
+            <span>
+              Particle distributions for selected potential landscapes
+            </span>
+
+          </div>
+
+          <figcaption>
+
+            <strong>Figure 1.</strong>
+            Simulated particle distributions showing how the potential
+            landscape and temperature influence stochastic motion.
+
+          </figcaption>
+
+        </figure>
+
+
+        <p>
+          These simulations establish the two main ingredients of the
+          Brownian-ratchet model: random thermal motion and a potential
+          landscape capable of biasing that motion.
+        </p>
+
+      </section>
+
+
+
+      <!-- =========================
+           BROWNIAN RATCHET
+      ========================== -->
+
+      <section class="project-section" id="flashing-ratchet">
+
+        <h2>Generating Directed Motion</h2>
+
+
+        <p>
+          The central part of the project investigates a periodically
+          switching potential. Particles alternate between a constant
+          potential $V_2$, where they diffuse approximately freely, and
+          an asymmetric periodic potential $V_1$ controlled by the
+          parameter $\alpha$.
+        </p>
+
+
+        <figure class="figure">
+
+          <div class="image-placeholder">
+
+            <strong>FIGURE 2</strong>
+
+            <span>
+              Asymmetric periodic potential $V_1$ and constant potential $V_2$
+            </span>
+
+          </div>
+
+          <figcaption>
+
+            <strong>Figure 2.</strong>
+            The two potential landscapes used in the Brownian-ratchet model.
+
+          </figcaption>
+
+        </figure>
+
+
+        <p>
+          While $V_2$ is active, particles diffuse randomly. When $V_1$
+          is restored, they move toward nearby potential minima. Because
+          the potential is asymmetric, the distances to neighboring minima
+          are unequal, breaking the spatial symmetry of the system.
+        </p>
+
+
+        <!-- =========================
+             BROWNIAN RATCHET CYCLE BOX
+        ========================== -->
+
+        <div class="content-box">
+
+          <p class="box-label">
+            Brownian Ratchet Cycle
+          </p>
+
+
+          <div class="ratchet-process">
+
+
+            <article class="process-step">
+
+              <h3>Diffuse</h3>
+
+              <p>
+                Particles spread while the potential is flat.
+              </p>
+
+            </article>
+
+
+            <span class="process-arrow">→</span>
+
+
+            <article class="process-step">
+
+              <h3>Switch on</h3>
+
+              <p>
+                The asymmetric potential is restored.
+              </p>
+
+            </article>
+
+
+            <span class="process-arrow">→</span>
+
+
+            <article class="process-step">
+
+              <h3>Relax</h3>
+
+              <p>
+                Particles move toward nearby minima.
+              </p>
+
+            </article>
+
+
+            <span class="process-arrow">→</span>
+
+
+            <article class="process-step">
+
+              <h3>Repeat</h3>
+
+              <p>
+                Repeated cycles create net displacement.
+              </p>
+
+            </article>
+
+
+          </div>
+
+        </div>
+
+
+        <p>
+          Repeated switching can therefore convert random Brownian motion
+          into a <strong>net directional particle current</strong>.
+        </p>
+
+
+        <figure class="figure">
+
+          <div class="image-placeholder">
+
+            <strong>FIGURE 3</strong>
+
+            <span>
+              Particle trajectories over several switching cycles
+            </span>
+
+          </div>
+
+          <figcaption>
+
+            <strong>Figure 3.</strong>
+            Simulated trajectories showing random diffusion followed by
+            motion toward nearby potential minima.
+
+          </figcaption>
+
+        </figure>
+
+
+        <p>
+          The trajectories show the mechanism directly: random motion during
+          free diffusion is followed by directed relaxation when the
+          asymmetric potential is activated.
+        </p>
+
+      </section>
+
+
+
+      <!-- =========================
+           PARTICLE CURRENT
+      ========================== -->
+
+      <section class="project-section" id="particle-current">
+
+        <h2>Controlling the Particle Current</h2>
+
+
+        <p>
+          Directed transport is quantified using the normalized particle
+          current,
+        </p>
+
+
+        <div class="equation">
+
+          $$
+          J
+          =
+          \frac{n^+-n^-}{N_p},
+          $$
+
+        </div>
+
+
+        <p>
+          where $n^+$ and $n^-$ are the numbers of rightward and leftward
+          transitions. Positive and negative values therefore represent
+          transport in opposite directions.
+        </p>
+
+
+        <h3>Potential asymmetry</h3>
+
+
+        <p>
+          The direction of transport is controlled by the asymmetry parameter
+          $\alpha$. Changing $\alpha$ changes the geometry of the periodic
+          potential and can reverse the direction of the current.
+        </p>
+
+
+        <div class="result-grid">
+
+
+          <article class="result-card">
+
+            <h3>
+              $\alpha < 0.5$
+            </h3>
+
+            <p>
+              Positive current and preferential motion to the right.
+            </p>
+
+          </article>
+
+
+          <article class="result-card">
+
+            <h3>
+              $\alpha = 0.5$
+            </h3>
+
+            <p>
+              Symmetric potential and approximately zero current.
+            </p>
+
+          </article>
+
+
+          <article class="result-card">
+
+            <h3>
+              $\alpha > 0.5$
+            </h3>
+
+            <p>
+              Negative current and preferential motion to the left.
+            </p>
+
+          </article>
+
+
+        </div>
+
+
+        <h3>Switching period</h3>
+
+
+        <p>
+          The current also depends on the switching period $T_p$. If the
+          potential switches too quickly, particles have little time to
+          diffuse and the current remains close to zero. At intermediate
+          periods, diffusion allows more particles to cross into neighboring
+          regions, producing a stronger net current.
+        </p>
+
+
+        <figure class="figure">
+
+          <div class="image-placeholder">
+
+            <strong>FIGURE 4</strong>
+
+            <span>
+              Average particle current as a function of switching period $T_p$
+            </span>
+
+          </div>
+
+          <figcaption>
+
+            <strong>Figure 4.</strong>
+            Dependence of the average particle current on the switching
+            period $T_p$.
+
+          </figcaption>
+
+        </figure>
+
+
+        <p>
+          For longer periods, the current decreases or stabilizes as the
+          particles have more time to redistribute. Directed transport
+          therefore depends on both spatial asymmetry and switching timescale.
+        </p>
+
+      </section>
+
+
+
+      <!-- =========================
+           ANALYTICAL COMPARISON
+      ========================== -->
+
+      <section class="project-section" id="analytical-comparison">
+
+        <h2>Numerical and Analytical Comparison</h2>
+
+
+        <p>
+          To evaluate the numerical model, we compare the simulated current
+          with an analytical expression,
+        </p>
+
+
+        <div class="equation">
+
+          $$
+          J_{\mathrm{avg}}
+          =
+          \frac{N_x}{4T_p}
+          \left[
+          \operatorname{erfc}
+          \left(
+          \frac{\alpha N_x}{2}
+          \sqrt{\frac{3}{T_p}}
+          \right)
+          -
+          \operatorname{erfc}
+          \left(
+          \frac{(1-\alpha)N_x}{2}
+          \sqrt{\frac{3}{T_p}}
+          \right)
+          \right].
+          $$
+
+        </div>
+
+
+        <p>
+          At low temperatures, the numerical and analytical results show
+          very good agreement as $\alpha$ is varied. Both reproduce the
+          reversal of the current around the symmetric case
+          $\alpha=0.5$.
+        </p>
+
+
+        <figure class="figure">
+
+          <div class="image-placeholder">
+
+            <strong>FIGURE 5</strong>
+
+            <span>
+              Analytical and numerical current as a function of $\alpha$
+            </span>
+
+          </div>
+
+          <figcaption>
+
+            <strong>Figure 5.</strong>
+            Comparison between the numerical and analytical particle current
+            as the potential asymmetry is varied.
+
+          </figcaption>
+
+        </figure>
+
+
+        <p>
+          Small deviations arise because the simulation uses a finite number
+          of particles on a discrete lattice and therefore contains stochastic
+          fluctuations that are absent from the continuous analytical model.
+        </p>
+
+
+        <h3>The role of temperature</h3>
+
+
+        <p>
+          The analytical expression does not explicitly contain $\beta$.
+          At small $\beta$, thermal fluctuations dominate and the numerical
+          current approaches zero. As $\beta$ increases, the potential
+          becomes more influential and the numerical results approach the
+          analytical prediction.
+        </p>
+
+
+        <div class="highlight-box">
+
+          <strong>Key observation</strong>
+
+          <p>
+            The analytical model agrees well with the simulation at low
+            temperatures, while the numerical model also captures the
+            temperature dependence of the particle dynamics.
+          </p>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- =========================
+           CONCLUSION
+      ========================== -->
+
+      <section class="project-section" id="conclusion">
+
+        <h2>Conclusion</h2>
+
+
+        <p>
+          The simulations demonstrate how random Brownian motion can produce
+          <strong>directed transport</strong> when combined with a periodically
+          switching asymmetric potential. The resulting current depends on
+          the potential asymmetry, temperature and switching period.
+        </p>
+
+
+        <p>
+          The analytical model agrees well with the numerical results in the
+          low-temperature regime, while the simulation also captures
+          stochastic and temperature-dependent effects.
+        </p>
+
+      </section>
+
+
+    </div>
+
+  </main>
+
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer class="footer">
+
+    <p>
+      © 2026 Kaia Myhre
+    </p>
+
+  </footer>
+
+
+</body>
+
+</html>
