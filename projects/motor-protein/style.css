@@ -63,13 +63,13 @@
 
   <main>
 
-    <div class="project-container">
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
 
-      <!-- =========================
-           INTRODUCTION
-      ========================== -->
+    <section class="section" id="introduction">
 
-      <section class="project-section" id="introduction">
+      <div class="section-content">
 
         <p>
           Brownian motion describes the random movement of microscopic
@@ -89,7 +89,9 @@
 
         <div class="highlight-box">
 
-          <strong>Main question</strong>
+          <span class="highlight-title">
+            Main question
+          </span>
 
           <p>
             How can stochastic thermal motion produce
@@ -99,18 +101,26 @@
 
         </div>
 
-      </section>
+      </div>
+
+    </section>
 
 
 
-      <!-- =========================
-           STOCHASTIC MOTION
-      ========================== -->
+    <!-- =========================
+         STOCHASTIC MOTION
+    ========================== -->
 
-      <section class="project-section" id="stochastic-motion">
+    <section class="section section-alt" id="stochastic-motion">
+
+      <div class="section-heading">
 
         <h2>From Diffusion to Particle Motion</h2>
 
+      </div>
+
+
+      <div class="section-content">
 
         <p>
           At microscopic scales, thermal fluctuations produce irregular
@@ -155,9 +165,9 @@
 
         <p>
           We verified that this expression satisfies the diffusion equation.
-          As $t\rightarrow0$, the Gaussian becomes localized around $x=y$,
-          giving $\phi(x,0)=h(x)$. The function $h(x)$ therefore represents
-          the initial particle distribution.
+          As $t\rightarrow0$, the Gaussian kernel becomes localized around
+          $x=y$, giving $\phi(x,0)=h(x)$. The function $h(x)$ therefore
+          represents the initial particle distribution.
         </p>
 
 
@@ -167,8 +177,9 @@
         <p>
           In the numerical model, particles perform a random walk on a
           one-dimensional lattice. At each time step, a particle can move
-          left, remain stationary, or move right. A potential $V(x)$ changes
-          these probabilities according to the Boltzmann distribution,
+          left, remain stationary, or move right. Introducing a potential
+          $V(x)$ changes the probability of these transitions according to
+          the Boltzmann distribution,
         </p>
 
 
@@ -220,8 +231,8 @@
         <p>
           The parameter $\beta$ determines the competition between
           <strong>thermal fluctuations and the potential landscape</strong>.
-          At high temperatures the three movements become approximately
-          equally likely,
+          At high temperatures, $e^{-\beta\Delta V}\approx1$ and the three
+          movements become approximately equally likely,
           $p^+\approx p^0\approx p^-\approx1/3$. At low temperatures,
           potential differences dominate and particles tend to remain near
           low-energy states.
@@ -233,30 +244,26 @@
 
         <p>
           We implemented the stochastic model in Python using
-          <strong>NumPy, SciPy and Matplotlib</strong> and simulated
-          10,000 particles in several potential landscapes.
+          <strong>NumPy, SciPy and Matplotlib</strong> and initially simulated
+          10,000 particles in several potential landscapes. These cases show
+          how the shape of $V(x)$ changes the resulting particle motion.
         </p>
 
 
-        <!-- =========================
-             POTENTIAL LANDSCAPES BOX
-        ========================== -->
+        <!-- POTENTIAL BOX -->
 
-        <div class="content-box">
-
-          <p class="box-label">
-            Potential Landscapes
-          </p>
-
+        <div class="concept-box">
 
           <div class="potential-grid">
 
 
             <article class="potential-card">
 
+              <span class="card-number">01</span>
+
               <h3>Constant potential</h3>
 
-              <div class="equation">
+              <div class="mini-equation">
 
                 $$
                 V(x)=k
@@ -273,9 +280,11 @@
 
             <article class="potential-card">
 
+              <span class="card-number">02</span>
+
               <h3>Linear potential</h3>
 
-              <div class="equation">
+              <div class="mini-equation">
 
                 $$
                 V(x)=-kx
@@ -292,21 +301,9 @@
 
             <article class="potential-card">
 
+              <span class="card-number">03</span>
+
               <h3>Periodic potential</h3>
-
-              <div class="equation">
-
-                $$
-                V(x)
-                =
-                k\left(
-                \frac{x}{15}
-                -
-                \cos\left(\frac{x}{3}\right)
-                \right)
-                $$
-
-              </div>
 
               <p>
                 Creates repeated energy barriers and local minima.
@@ -317,9 +314,11 @@
 
             <article class="potential-card">
 
+              <span class="card-number">04</span>
+
               <h3>Quartic potential</h3>
 
-              <div class="equation">
+              <div class="mini-equation">
 
                 $$
                 V(x)=kx^4
@@ -328,7 +327,7 @@
               </div>
 
               <p>
-                Strongly confines particles around the centre.
+                Confines particles around the centre.
               </p>
 
             </article>
@@ -346,7 +345,7 @@
             <strong>FIGURE 1</strong>
 
             <span>
-              Particle distributions for selected potential landscapes
+              Particle distributions for selected potentials and temperatures
             </span>
 
           </div>
@@ -368,18 +367,26 @@
           landscape capable of biasing that motion.
         </p>
 
-      </section>
+      </div>
+
+    </section>
 
 
 
-      <!-- =========================
-           BROWNIAN RATCHET
-      ========================== -->
+    <!-- =========================
+         BROWNIAN RATCHET
+    ========================== -->
 
-      <section class="project-section" id="flashing-ratchet">
+    <section class="section" id="flashing-ratchet">
+
+      <div class="section-heading">
 
         <h2>Generating Directed Motion</h2>
 
+      </div>
+
+
+      <div class="section-content">
 
         <p>
           The central part of the project investigates a periodically
@@ -413,28 +420,30 @@
 
 
         <p>
-          While $V_2$ is active, particles diffuse randomly. When $V_1$
-          is restored, they move toward nearby potential minima. Because
-          the potential is asymmetric, the distances to neighboring minima
-          are unequal, breaking the spatial symmetry of the system.
+          While $V_2$ is active, particles diffuse randomly in both
+          directions. When $V_1$ is restored, they move toward nearby
+          potential minima. Because the potential is asymmetric, the
+          distances to neighboring minima are unequal, breaking the spatial
+          symmetry of the system.
         </p>
 
 
-        <!-- =========================
-             BROWNIAN RATCHET CYCLE BOX
-        ========================== -->
+        <p>
+          Repeated switching can therefore convert random Brownian motion
+          into a <strong>net directional particle current</strong>.
+        </p>
 
-        <div class="content-box">
 
-          <p class="box-label">
-            Brownian Ratchet Cycle
-          </p>
+        <!-- RATCHET PROCESS BOX -->
 
+        <div class="concept-box">
 
           <div class="ratchet-process">
 
 
             <article class="process-step">
+
+              <span>1</span>
 
               <h3>Diffuse</h3>
 
@@ -445,10 +454,9 @@
             </article>
 
 
-            <span class="process-arrow">→</span>
-
-
             <article class="process-step">
+
+              <span>2</span>
 
               <h3>Switch on</h3>
 
@@ -459,10 +467,9 @@
             </article>
 
 
-            <span class="process-arrow">→</span>
-
-
             <article class="process-step">
+
+              <span>3</span>
 
               <h3>Relax</h3>
 
@@ -473,10 +480,9 @@
             </article>
 
 
-            <span class="process-arrow">→</span>
-
-
             <article class="process-step">
+
+              <span>4</span>
 
               <h3>Repeat</h3>
 
@@ -490,12 +496,6 @@
           </div>
 
         </div>
-
-
-        <p>
-          Repeated switching can therefore convert random Brownian motion
-          into a <strong>net directional particle current</strong>.
-        </p>
 
 
         <figure class="figure">
@@ -524,21 +524,30 @@
         <p>
           The trajectories show the mechanism directly: random motion during
           free diffusion is followed by directed relaxation when the
-          asymmetric potential is activated.
+          asymmetric potential is activated. Repeating these stages produces
+          the characteristic step-like motion of the model.
         </p>
 
-      </section>
+      </div>
+
+    </section>
 
 
 
-      <!-- =========================
-           PARTICLE CURRENT
-      ========================== -->
+    <!-- =========================
+         PARTICLE CURRENT
+    ========================== -->
 
-      <section class="project-section" id="particle-current">
+    <section class="section section-alt" id="particle-current">
+
+      <div class="section-heading">
 
         <h2>Controlling the Particle Current</h2>
 
+      </div>
+
+
+      <div class="section-content">
 
         <p>
           Directed transport is quantified using the normalized particle
@@ -559,7 +568,7 @@
 
         <p>
           where $n^+$ and $n^-$ are the numbers of rightward and leftward
-          transitions. Positive and negative values therefore represent
+          transitions. Positive and negative values therefore represent net
           transport in opposite directions.
         </p>
 
@@ -579,9 +588,9 @@
 
           <article class="result-card">
 
-            <h3>
+            <strong>
               $\alpha < 0.5$
-            </h3>
+            </strong>
 
             <p>
               Positive current and preferential motion to the right.
@@ -592,9 +601,9 @@
 
           <article class="result-card">
 
-            <h3>
+            <strong>
               $\alpha = 0.5$
-            </h3>
+            </strong>
 
             <p>
               Symmetric potential and approximately zero current.
@@ -605,9 +614,9 @@
 
           <article class="result-card">
 
-            <h3>
+            <strong>
               $\alpha > 0.5$
-            </h3>
+            </strong>
 
             <p>
               Negative current and preferential motion to the left.
@@ -660,18 +669,26 @@
           therefore depends on both spatial asymmetry and switching timescale.
         </p>
 
-      </section>
+      </div>
+
+    </section>
 
 
 
-      <!-- =========================
-           ANALYTICAL COMPARISON
-      ========================== -->
+    <!-- =========================
+         ANALYTICAL COMPARISON
+    ========================== -->
 
-      <section class="project-section" id="analytical-comparison">
+    <section class="section" id="analytical-comparison">
+
+      <div class="section-heading">
 
         <h2>Numerical and Analytical Comparison</h2>
 
+      </div>
+
+
+      <div class="section-content">
 
         <p>
           To evaluate the numerical model, we compare the simulated current
@@ -745,17 +762,19 @@
 
 
         <p>
-          The analytical expression does not explicitly contain $\beta$.
-          At small $\beta$, thermal fluctuations dominate and the numerical
-          current approaches zero. As $\beta$ increases, the potential
-          becomes more influential and the numerical results approach the
-          analytical prediction.
+          Temperature also reveals a limitation of the analytical expression,
+          which does not explicitly contain $\beta$. At small $\beta$, thermal
+          fluctuations dominate and the numerical current approaches zero.
+          As $\beta$ increases, the potential becomes more influential and
+          the numerical results approach the analytical prediction.
         </p>
 
 
         <div class="highlight-box">
 
-          <strong>Key observation</strong>
+          <span class="highlight-title">
+            Key observation
+          </span>
 
           <p>
             The analytical model agrees well with the simulation at low
@@ -765,40 +784,48 @@
 
         </div>
 
-      </section>
+      </div>
+
+    </section>
 
 
 
-      <!-- =========================
-           CONCLUSION
-      ========================== -->
+    <!-- =========================
+         CONCLUSION
+    ========================== -->
 
-      <section class="project-section" id="conclusion">
+    <section class="section section-alt" id="conclusion">
+
+      <div class="section-heading">
 
         <h2>Conclusion</h2>
 
+      </div>
+
+
+      <div class="section-content">
 
         <p>
           The simulations demonstrate how random Brownian motion can produce
           <strong>directed transport</strong> when combined with a periodically
-          switching asymmetric potential. The resulting current depends on
-          the potential asymmetry, temperature and switching period.
+          switching asymmetric potential. The direction and magnitude of the
+          resulting current depend on the potential asymmetry, temperature
+          and switching period.
         </p>
 
 
         <p>
-          The analytical model agrees well with the numerical results in the
-          low-temperature regime, while the simulation also captures
-          stochastic and temperature-dependent effects.
+          Comparison with the analytical model shows good agreement in the
+          low-temperature regime, while the numerical simulation also captures
+          stochastic and temperature-dependent effects beyond the analytical
+          approximation.
         </p>
 
-      </section>
+      </div>
 
-
-    </div>
+    </section>
 
   </main>
-
 
 
   <!-- =========================
@@ -812,7 +839,6 @@
     </p>
 
   </footer>
-
 
 </body>
 
