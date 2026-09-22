@@ -245,32 +245,36 @@ main {
 
 /* Figure 1 - three plots */
 
-.figure-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.figure-1 .figure-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   gap: 1rem;
+  width: 100%;
   align-items: center;
 }
 
-.figure-panel {
+.figure-1 .figure-panel {
+  flex: 1 1 0;
+  width: 33.333%;
+  min-width: 0;
   text-align: center;
 }
 
-/* Overrides the normal 75% figure image width */
-.figure .figure-panel img {
+.figure-1 .figure-panel img {
+  display: block;
   width: 100%;
-  max-width: none;
+  max-width: 100%;
   height: auto;
   margin: 0;
 }
 
-.figure-panel span {
+.figure-1 .figure-panel span {
   display: block;
   margin-top: 0.6rem;
   font-size: 0.85rem;
   color: var(--muted);
 }
-
 .image-placeholder {
   min-height: 280px;
   border: 1px dashed var(--border);
