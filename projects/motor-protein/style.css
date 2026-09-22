@@ -232,10 +232,15 @@ main {
 
 .figure img {
   display: block;
-  width: 50%;
+  width: 75%;
   max-width: 850px;
   height: auto;
   margin: 0 auto;
+}
+
+.figure img.figure-medium {
+  width: 55%;
+  max-width: 550px;
 }
 
 .image-placeholder {
