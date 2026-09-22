@@ -243,6 +243,34 @@ main {
   max-width: 550px;
 }
 
+/* Figure 1 - three plots */
+
+.figure-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  align-items: center;
+}
+
+.figure-panel {
+  text-align: center;
+}
+
+/* Overrides the normal 75% figure image width */
+.figure .figure-panel img {
+  width: 100%;
+  max-width: none;
+  height: auto;
+  margin: 0;
+}
+
+.figure-panel span {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
 .image-placeholder {
   min-height: 280px;
   border: 1px dashed var(--border);
