@@ -312,6 +312,26 @@ main {
   height: auto !important;
   margin: 0 auto !important;
 }
+/* Figure 4 - current vs switching period */
+
+.figure-4 img {
+  display: block !important;
+  width: 65% !important;
+  max-width: 650px !important;
+  height: auto !important;
+  margin: 0 auto !important;
+}
+
+
+/* Figure 5 - numerical vs analytical current */
+
+.figure-5 img {
+  display: block !important;
+  width: 65% !important;
+  max-width: 650px !important;
+  height: auto !important;
+  margin: 0 auto !important;
+}
 
 
 /* =========================
