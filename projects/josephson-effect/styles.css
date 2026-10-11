@@ -1,3 +1,4 @@
+
 :root {
   --bg: #f5f7fb;
   --surface: #ffffff;
@@ -19,10 +20,7 @@ body {
   line-height: 1.6;
 }
 
-
-/* =========================
-   HEADER
-   ========================= */
+/* HEADER */
 
 .project-header {
   background: linear-gradient(145deg, #0d1630, #1b2a52);
@@ -66,10 +64,7 @@ body {
   color: #c5d4ff;
 }
 
-
-/* =========================
-   MAIN
-   ========================= */
+/* MAIN */
 
 main {
   max-width: 1000px;
@@ -77,10 +72,7 @@ main {
   padding: 0 1.5rem;
 }
 
-
-/* =========================
-   SECTIONS
-   ========================= */
+/* SECTIONS */
 
 .section {
   background: var(--surface);
@@ -127,10 +119,7 @@ main {
   max-width: 850px;
 }
 
-
-/* =========================
-   EQUATIONS
-   ========================= */
+/* EQUATIONS */
 
 .equation {
   margin: 2rem 0;
@@ -144,10 +133,7 @@ main {
   overflow-x: auto;
 }
 
-
-/* =========================
-   HIGHLIGHT BOX
-   ========================= */
+/* HIGHLIGHT BOX */
 
 .highlight-box {
   border-left: 4px solid var(--accent);
@@ -170,10 +156,7 @@ main {
   margin-bottom: 0;
 }
 
-
-/* =========================
-   OUTER CONCEPT BOX
-   ========================= */
+/* CONCEPT BOX */
 
 .concept-box {
   border: 1px solid var(--border);
@@ -183,10 +166,7 @@ main {
   background: var(--surface);
 }
 
-
-/* =========================
-   POTENTIAL LANDSCAPES
-   ========================= */
+/* POTENTIAL CARDS */
 
 .potential-grid {
   display: grid;
@@ -221,10 +201,7 @@ main {
   letter-spacing: 0.08em;
 }
 
-
-/* =========================
-   FIGURES
-   ========================= */
+/* FIGURES */
 
 .figure {
   margin: 2.5rem 0;
@@ -242,8 +219,6 @@ main {
   width: 55%;
   max-width: 550px;
 }
-
-/* Figure 1 - three plots */
 
 .figure-1 .figure-grid {
   display: flex;
@@ -275,17 +250,16 @@ main {
   font-size: 0.85rem;
   color: var(--muted);
 }
+
 .image-placeholder {
   min-height: 280px;
   border: 1px dashed var(--border);
   border-radius: 10px;
   background: var(--bg);
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   text-align: center;
   color: var(--muted);
   padding: 2rem;
@@ -312,7 +286,6 @@ main {
   height: auto !important;
   margin: 0 auto !important;
 }
-/* Figure 4 - current vs switching period */
 
 .figure-4 img {
   display: block !important;
@@ -322,9 +295,6 @@ main {
   margin: 0 auto !important;
 }
 
-
-/* Figure 5 - numerical vs analytical current */
-
 .figure-5 img {
   display: block !important;
   width: 65% !important;
@@ -333,10 +303,7 @@ main {
   margin: 0 auto !important;
 }
 
-
-/* =========================
-   RATCHET PROCESS
-   ========================= */
+/* PROCESS STEPS */
 
 .ratchet-process {
   display: grid;
@@ -358,14 +325,11 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   width: 28px;
   height: 28px;
   border-radius: 50%;
-
   background: var(--accent);
   color: white;
-
   font-size: 0.8rem;
   font-weight: 700;
 }
@@ -380,10 +344,7 @@ main {
   color: var(--muted);
 }
 
-
-/* =========================
-   RESULTS
-   ========================= */
+/* RESULTS */
 
 .result-grid {
   display: grid;
@@ -405,19 +366,13 @@ main {
   margin-bottom: 0;
 }
 
-
-/* =========================
-   LINKS
-   ========================= */
+/* LINKS */
 
 a {
   color: var(--accent);
 }
 
-
-/* =========================
-   FOOTER
-   ========================= */
+/* FOOTER */
 
 .footer {
   max-width: 1000px;
@@ -427,13 +382,9 @@ a {
   font-size: 0.9rem;
 }
 
-
-/* =========================
-   MOBILE
-   ========================= */
+/* MOBILE */
 
 @media (max-width: 700px) {
-
   main {
     padding: 0 1rem;
   }
