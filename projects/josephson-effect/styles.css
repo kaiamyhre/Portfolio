@@ -412,3 +412,9 @@ mjx-container[display="true"] {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
+
+
+.section,
+.section-alt {
+  background: #ffffff;
+}
