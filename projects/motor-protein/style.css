@@ -510,3 +510,18 @@ mjx-container[display="true"] {
 .section-alt {
   background: #ffffff;
 }
+/* Make the entire page background white */
+
+html,
+body,
+main,
+.section,
+.section-alt {
+  background: #ffffff !important;
+}
+
+/* Keep the dark blue header */
+
+.project-header {
+  background: linear-gradient(145deg, #0d1630, #1b2a52) !important;
+}
