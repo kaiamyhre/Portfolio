@@ -511,3 +511,15 @@ mjx-container[display="true"] {
   background: #ffffff;
 }
 
+/* Remove scrollbars around equations */
+
+.equation,
+.mini-equation {
+  overflow: visible;
+}
+
+/* Prevent MathJax from adding scrollbars */
+
+mjx-container {
+  overflow: visible !important;
+}
