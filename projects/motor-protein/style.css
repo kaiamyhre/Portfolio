@@ -467,3 +467,42 @@ a {
   }
 }
 
+/* =========================
+   MORE COMPACT SPACING
+   ========================= */
+
+/* Less space around equations */
+.equation {
+  margin: 0.6rem 0;
+  padding: 0;
+}
+
+/* Reduce MathJax's default spacing */
+mjx-container[display="true"] {
+  margin: 0.4rem 0 !important;
+}
+
+/* Less space between paragraphs */
+.section-content p {
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+/* Less space around subheadings */
+.section-content h3 {
+  margin-top: 1.3rem;
+  margin-bottom: 0.4rem;
+}
+
+/* Slightly more compact sections */
+.section {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Keep figures comfortably separated */
+.figure {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
