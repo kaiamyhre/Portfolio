@@ -255,14 +255,14 @@ main {
 /* Figure 1 */
 
 .figure-1 img {
-  width: 55%;
+  width: 80%;
   max-width: 550px;
 }
 
 /* Figure 2 */
 
 .figure-2 img {
-  width: 65%;
+  width: 55%;
   max-width: 650px;
 }
 
@@ -276,15 +276,15 @@ main {
 /* Figure 4 */
 
 .figure-4 img {
-  width: 75%;
-  max-width: 750px;
+  width: 65%;
+  max-width: 650px;
 }
 
 /* Figure 5 */
 
 .figure-5 img {
-  width: 75%;
-  max-width: 750px;
+  width: 65%;
+  max-width: 650px;
 }
 
 /* =========================
