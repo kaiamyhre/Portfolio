@@ -523,3 +523,14 @@ mjx-container[display="true"] {
 mjx-container {
   overflow: visible !important;
 }
+
+/* Slightly more spacing around equations */
+
+.equation {
+  margin: 1rem 0;
+  padding: 0.2rem 0;
+}
+
+mjx-container[display="true"] {
+  margin: 0.6rem 0 !important;
+}
