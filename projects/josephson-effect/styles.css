@@ -228,6 +228,11 @@ main {
    FIGURES
    ========================= */
 
+
+/* =========================
+   FIGURES
+   ========================= */
+
 .figure {
   margin: 2.5rem 0;
 }
@@ -240,11 +245,6 @@ main {
   margin: 0 auto;
 }
 
-.figure img.figure-medium {
-  width: 55%;
-  max-width: 550px;
-}
-
 .figure figcaption {
   margin-top: 0.7rem;
   color: var(--muted);
@@ -252,40 +252,41 @@ main {
   text-align: center;
 }
 
-/* Figure 1 */
+/* Figure 1 - much larger */
 
-.figure-1 img {
-  width: 80%;
-  max-width: 550px;
+.figure-1 img.figure-medium {
+  width: 85%;
+  max-width: 800px;
 }
 
-/* Figure 2 */
+/* Figure 2 - slightly smaller */
 
 .figure-2 img {
   width: 55%;
-  max-width: 650px;
+  max-width: 550px;
 }
 
-/* Figure 3 */
+/* Figure 3 - unchanged */
 
-.figure-3 img {
+.figure-3 img.figure-medium {
   width: 65%;
   max-width: 650px;
 }
 
-/* Figure 4 */
+/* Figure 4 - slightly smaller */
 
 .figure-4 img {
-  width: 65%;
-  max-width: 650px;
+  width: 60%;
+  max-width: 600px;
 }
 
-/* Figure 5 */
+/* Figure 5 - slightly smaller */
 
 .figure-5 img {
-  width: 65%;
-  max-width: 650px;
+  width: 60%;
+  max-width: 600px;
 }
+
 
 /* =========================
    RESULTS
